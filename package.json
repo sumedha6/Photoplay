@@ -1,0 +1,23 @@
+{
+  "name": "photoplay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "1+1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumedha6/Photoplay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumedha6/Photoplay/issues"
+  },
+  "homepage": "https://github.com/sumedha6/Photoplay#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jade": "^1.11.0"
+  }
+}
