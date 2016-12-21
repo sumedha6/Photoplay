@@ -16,6 +16,16 @@ app.get('/', function(req, res) {
     res.render("index", { title: "Home" });
 });
 
+app.post('/upload', function(req, res) {
+    var room = {
+        image: req.body.data,
+        // id: uuid.v4()
+    };
+
+    rooms.push(room);
+
+    res.redirect("/");
+});
 // app.get('/admin/rooms', function (req, res) {
 //     res.render("rooms", {
 //         title: "Admin Rooms",
