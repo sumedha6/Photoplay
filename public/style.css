@@ -1,8 +1,18 @@
-body {
-    padding-top: 50px;
-    background-color: "red";
+body{
+background-color: red;
+text-align: center;
 }
 
-.main-content {
-    padding: 40px 15px;
+input{
+  padding-top: 150px;
+}
+
+#uploadPreview{
+  padding-top: 20px;
+}
+/*div{
+  background-color: red;
+}*/
+button{
+  text-align: left;
 }
