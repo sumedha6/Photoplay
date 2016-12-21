@@ -1,0 +1,18 @@
+body{
+background-color: red;
+text-align: center;
+}
+
+input{
+  padding-top: 150px;
+}
+
+#uploadPreview{
+  padding-top: 20px;
+}
+/*div{
+  background-color: red;
+}*/
+button{
+  text-align: left;
+}
