@@ -1,23 +1,38 @@
-doctype html
-html(lang='en')
-  head
-    // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    // <link rel="stylesheet" type="text/css" href="style.css">
-    link(rel='stylesheet', href='style.css')
-    link(rel='stylesheet', href='css/bootstrap.min.css')
-    // script(src='js\angular.min.js')
-    // script(src='js\angular.js')
-    title
-  .col-lg-12
-    center
-      input#uploadImage(type='file', name='myPhoto', onchange='PreviewImage();')
-    button(type='click') Go
-    img#uploadPreview(style='width: auto; height: auto')
-  script(type='text/javascript').
-    function PreviewImage() {
-    var oFReader = new FileReader();
-    oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
-    oFReader.onload = function (oFREvent) {
-    document.getElementById("uploadPreview").src = oFREvent.target.result;
-    };
-    };
+head
+  // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+  // <link rel="stylesheet" type="text/css" href="style.css">
+  link(rel='stylesheet', href='style.css')
+  link(rel='stylesheet', href='css/bootstrap.min.css')
+  script(src='js\angular.min.js')
+  script(src='js\angular.js')
+  title
+.col-lg-12
+  center
+    input#uploadImage(type='file', name='myPhoto', onchange='PreviewImage();')
+  button#btn(type='click') Go
+  img#uploadPreview(style='width: auto; height: auto')
+script(type='text/javascript').
+  function PreviewImage() {
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+  oFReader.onload = function (oFREvent) {
+  document.getElementById("uploadPreview").src = oFREvent.target.result;
+  };
+  };
+script(type='text/javascript').
+  $('#btn').onclick(function(){
+  var formData = new FormData($(#uploadPreview)[0]);
+  $.ajax({
+  url: '/upload',
+  type: 'POST',
+  data: uploadPreview,
+  async: false,
+  success: function (data) {
+  alert(data)
+  },
+  cache: false,
+  contentType: false,
+  processData: false
+  });
+  return false;
+  });
