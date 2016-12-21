@@ -25,12 +25,12 @@ app.post('/upload', function(req, res) {
 
     res.redirect("/");
 });
-app.get('/admin/rooms', function(req, res) {
-    res.render("rooms", {
-        title: "Admin Rooms",
-        rooms: rooms
-    });
-});
+// app.get('/admin/rooms', function(req, res) {
+//     res.render("rooms", {
+//         title: "Admin Rooms",
+//         rooms: rooms
+//     });
+// });
 
 // app.get('/admin/rooms/add', function (req, res) {
 //     res.render("add");
