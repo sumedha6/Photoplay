@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
     var room = {
         name: req.body.name,
-        id: uuid.v4()
+        // id: uuid.v4()
     };
     rooms.push(room);
     res.json(room);
