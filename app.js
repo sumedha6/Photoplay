@@ -6,25 +6,32 @@ var uuid = require("node-uuid");
 var _ = require("lodash");
 
 app.set("views", "./views");
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
+//app.use(express.static("public"));
 
 app.use(express.static("public"));
 app.use(express.static("node_modules/bootstrap/dist"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
-    res.render("index", { title: "Home" });
+    res.render("index.html", { title: "Home" });
 });
 
 app.post('/upload', function(req, res) {
     var room = {
-        image: req.body.data,
-        // id: uuid.v4()
+        name: req.body.data,
+        id: uuid.v4()
     };
     rooms.push(room);
 
-    res.redirect("/");
+    res.redirect('/');
+    res.render("upload", { title: "upload" });
 });
+
+app.get('/', function(req, res) {
+    res.render("index", { title: "upload" });
+});
+
 // app.get('/admin/rooms', function(req, res) {
 //     res.render("rooms", {
 //         title: "Admin Rooms",

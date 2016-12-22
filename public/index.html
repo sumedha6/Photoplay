@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>title</title>
+    <script src="js\angular.js"></script>
+    <script src="js\angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', [])
+        app.controller('MyController',
+            function MyController($scope, $http) {
+                //the image
+                $scope.uploadme;
+                $scope.uploadImage = function() {
+                        var fd = new FormData();
+                        var imgBlob = dataURItoBlob($scope.uploadme);
+                        fd.append('file', imgBlob);
+                        $http.post(
+                                'upload',
+                                fd, {
+                                    transformRequest: angular.identity,
+                                    headers: {
+                                        'Content-Type': undefined
+                                    }
+                                }
+                            )
+                            .success(function(response) {
+                                console.log('success', response);
+                            })
+                            .error(function(response) {
+                                console.log('error', response);
+                            });
+                    }
+                    //you need this function to convert the dataURI
+                function dataURItoBlob(dataURI) {
+                    var binary = atob(dataURI.split(',')[1]);
+                    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                    var array = [];
+                    for (var i = 0; i < binary.length; i++) {
+                        array.push(binary.charCodeAt(i));
+                    }
+                    return new Blob([new Uint8Array(array)], {
+                        type: mimeString
+                    });
+                }
+            });
+        //your directive
+        app.directive("fileread", [
+            function() {
+                return {
+                    scope: {
+                        fileread: "="
+                    },
+                    link: function(scope, element, attributes) {
+                        element.bind("change", function(changeEvent) {
+                            var reader = new FileReader();
+                            reader.onload = function(loadEvent) {
+                                scope.$apply(function() {
+                                    scope.fileread = loadEvent.target.result;
+                                });
+                            }
+                            reader.readAsDataURL(changeEvent.target.files[0]);
+                        });
+                    }
+                }
+            }
+        ]);
+    </script>
+</head>
+
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="MyController">
+            <input type="file" fileread="uploadme"><img src="{{uploadme}}" width="100" height="100" alt="Image preview..."><br>
+            <p>Image dataURI:
+                <pre>\n\n\n{{uploadme}}                        </pre>
+            </p><br>
+            <button ng-click="uploadImage()">upload image</button>
+        </div>
+    </div>
+</body>
+
+</html>
