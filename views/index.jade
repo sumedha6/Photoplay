@@ -42,6 +42,8 @@ doctype html
 html(lang='en')
   head
     title Jade
+    script(src='angular.js')
+    script(src='angular.min.js')
     script.
       var app = angular.module('myApp', [])
       app.controller('MyController',
@@ -111,7 +113,10 @@ html(lang='en')
         p
           | Image dataURI:
           pre.
-            \n{{uploadme}}            
+            \n\n\n{{1+3}}                        
         br
         button(ng-click='uploadImage()') upload image
+
+
+
 

@@ -1,31 +1,31 @@
-var myApp=angular.module("myModule", []).filter("search",function(){
-  return function(gender){
-    switch (gender){
-      case 1:
-        return "male";
-        case 2:
-         return "female";
-         case 3:
-          return "ambiguous";
+var myApp = angular.module("myModule", []).filter("search", function() {
+    return function(gender) {
+        switch (gender) {
+            case 1:
+                return "male";
+            case 2:
+                return "female";
+            case 3:
+                return "ambiguous";
 
+        }
     }
-  }
-}).controller("myController",function($scope){
- var employees=[
-   {name:"Sumedha",gender:1,city:"pune"},
-   {name:"Ajay",gender:2,city:"mumbai"},
-  { name:"Java",gender:3,city:"delhi"}
-];
-  $scope.employees=employees;
-// myApp.controller("myController", myController);
-$scope.incrementLikes=function(employee){
-  employee.likes++;
-}
+}).controller("myController", function($scope) {
+    var employees = [
+        { name: "Sumedha", gender: 1, city: "pune" },
+        { name: "Ajay", gender: 2, city: "mumbai" },
+        { name: "Java", gender: 3, city: "delhi" }
+    ];
+    $scope.employees = employees;
+    // myApp.controller("myController", myController);
+    $scope.incrementLikes = function(employee) {
+        employee.likes++;
+    }
 
-$scope.decrement=function(employee){
-  employee.date++;
-}
-// </script>
+    $scope.decrement = function(employee) {
+            employee.date++;
+        }
+        // </script>
 });
 
 
