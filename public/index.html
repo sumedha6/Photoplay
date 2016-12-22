@@ -16,7 +16,7 @@
                         var imgBlob = dataURItoBlob($scope.uploadme);
                         fd.append('file', imgBlob);
                         $http.post(
-                                'upload',
+                                '',
                                 fd, {
                                     transformRequest: angular.identity,
                                     headers: {
