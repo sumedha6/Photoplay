@@ -13,9 +13,14 @@ app.get('/', function(req, res) {
     res.render("index.html", { title: "Home" });
 });
 
-app.post('/upload', function(req, res) {
-
-    res.redirect(__dirname + '/public/upload.html');
+app.post('/', function(req, res) {
+    var room = {
+        name: req.body.name,
+        id: uuid.v4()
+    };
+    rooms.push(room);
+    res.json(room);
+    ///  res.redirect(__dirname + '/public/upload.html');
 });
 
 // app.get('/upload', function(req, res) {
