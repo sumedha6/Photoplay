@@ -5,8 +5,9 @@ var bodyParser = require("body-parser");
 var uuid = require("node-uuid");
 var _ = require("lodash");
 
-app.set("views", "./views");
+app.set("views", "./public");
 app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 //app.use(express.static("public"));
 
 app.use(express.static("public"));
@@ -26,6 +27,7 @@ app.post('/upload', function(req, res) {
 
     res.redirect('/');
     res.render("upload", { title: "upload" });
+    res.render('search.ejs', output);
 });
 
 app.get('/upload', function(req, res) {

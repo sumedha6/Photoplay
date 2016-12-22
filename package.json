@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sumedha6/Photoplay#readme",
   "dependencies": {
+    "ejs": "^2.5.5",
     "express": "^4.14.0",
     "jade": "^1.11.0"
   }
