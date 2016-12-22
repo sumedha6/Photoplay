@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/sumedha6/Photoplay#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "ejs": "^2.5.5",
-=======
     "body-parser": "^1.15.2",
->>>>>>> befcfc5b1dde121b0757d291c6fe3296433678b2
+    "ejs": "^2.5.5",
     "express": "^4.14.0",
-    "jade": "^1.11.0"
+    "formidable": "^1.0.17",
+    "fs": "0.0.1-security",
+    "jade": "^1.11.0",
+    "path": "^0.12.7"
   }
 }
