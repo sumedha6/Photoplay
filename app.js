@@ -28,8 +28,8 @@ app.post('/upload', function(req, res) {
     res.render("upload", { title: "upload" });
 });
 
-app.get('/', function(req, res) {
-    res.render("index", { title: "upload" });
+app.get('/upload', function(req, res) {
+    res.render("index.html", { title: "upload" });
 });
 
 // app.get('/admin/rooms', function(req, res) {
