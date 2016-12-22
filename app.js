@@ -15,10 +15,12 @@ app.get('/', function(req, res) {
 
 app.post('/upload', function(req, res) {
 
+    res.redirect(__dirname + '/public/upload.html');
 });
-app.get('/upload', function(req, res) {
 
-});
+// app.get('/upload', function(req, res) {
+//     res.sendFile(__dirname + '/public/upload.html');
+// });
 app.listen(3000, function() {
     console.log('listening on port 3000!');
 });
