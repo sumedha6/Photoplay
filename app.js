@@ -1,31 +1,47 @@
-var express = require("express");
+var express = require('express');
 var app = express();
-var rooms = require("./data/rooms.json");
-var bodyParser = require("body-parser");
-var uuid = require("node-uuid");
-var _ = require("lodash");
+var path = require('path');
+var formidable = require('formidable');
+var fs = require('fs');
 
-app.use(express.static("public"));
-app.use(express.static("node_modules/bootstrap/dist"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.render("index.html", { title: "Home" });
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.post('/', function(req, res) {
-    var room = {
-        name: req.body.name,
-        // id: uuid.v4()
-    };
-    rooms.push(room);
-    res.json(room);
-    ///  res.redirect(__dirname + '/public/upload.html');
+
+    // create an incoming form object
+    var form = new formidable.IncomingForm();
+
+    // specify that we want to allow the user to upload multiple files in a single request
+    form.multiples = true;
+
+    // store all uploads in the /uploads directory
+    form.uploadDir = path.join(__dirname, '/public/images');
+
+    // every time a file has been uploaded successfully,
+    // rename it to it's orignal name
+    form.on('file', function(field, file) {
+        fs.rename(file.path, path.join(form.uploadDir, file.name));
+    });
+
+    // log any errors that occur
+    form.on('error', function(err) {
+        console.log('An error has occured: \n' + err);
+    });
+
+    // once all the files have been uploaded, send a response to the client
+    form.on('end', function() {
+        res.end('success');
+    });
+
+    // parse the incoming request containing the form data
+    form.parse(req);
+
 });
 
-// app.get('/upload', function(req, res) {
-//     res.sendFile(__dirname + '/public/upload.html');
-// });
-app.listen(3000, function() {
-    console.log('listening on port 3000!');
+var server = app.listen(3000, function() {
+    console.log('Server listening on port 3000');
 });
