@@ -3,9 +3,13 @@ var app = express();
 var path = require('path');
 var formidable = require('formidable');
 var fs = require('fs');
+var bodyparser = require('body-parser');
+var uuid = require('node-uuid');
+var rooms = require('./data/rooms.json');
+
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(bodyparser.urlencoded({ extended: true }));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
@@ -40,6 +44,15 @@ app.post('/', function(req, res) {
     // parse the incoming request containing the form data
     form.parse(req);
 
+});
+app.post('/upload', function(req, res) {
+    console.log("req", req.body)
+    var room = {
+        name: req.body,
+        id: uuid.v4(),
+    };
+    rooms.push(room);
+    res.json(room);
 });
 
 var server = app.listen(3000, function() {

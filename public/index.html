@@ -29,68 +29,80 @@
     </div> -->
 
     <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onchange="readURL()"><br />
-    <img id="blah" src="#" alt="your image" style="height:100px" width="100px"/>
+    <img id="blah" src="#" alt="your image" style="height:100px" width="100px" />
     <p id="response"></p>
 
     <button id="btn">Click here</button>
 
     <script type="text/javascript">
-    $('#btn').click(function () {
-    var file = document.getElementById('upload-input').files[0];
-    var apiUrl="https://api.projectoxford.ai/emotion/v1.0/recognize";
-    var apiKey="6e1e8ccb31204ae7a636b502b3c93511";
-    var result=$('#response');
-    var value=response.faceRectangle;
+        $('#btn').click(function() {
+            var file = document.getElementById('upload-input').files[0];
+            var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+            var apiKey = "6e1e8ccb31204ae7a636b502b3c93511";
+            var result = $('#response');
+            var value = response.faceRectangle;
 
-    CallAPI(file, apiUrl, apiKey);
-    // Emotion(value);
-    ProcessResult(file);
+            CallAPI(file, apiUrl, apiKey);
+            // Emotion(value);
+            ProcessResult(file);
 
-    });
+        });
 
 
-        function CallAPI(file,apiUrl,apiKey) {
+        function CallAPI(file, apiUrl, apiKey) {
 
 
             $.ajax({
-                url: apiUrl,
-                beforeSend: function(xhrObj){
-                    // Request headers
-                    xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key",apiKey);
-                },
-                type: "POST",
-                // Request body
-                processData:false,
-                data: file,
-                dataType:'json'
+                    url: apiUrl,
+                    beforeSend: function(xhrObj) {
+                        // Request headers
+                        xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+                        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
+                    },
+                    type: "POST",
+                    // Request body
+                    processData: false,
+                    data: file,
+                    dataType: 'json'
 
-            })
-            .done(function (response) {
-              ProcessResult(response)
-              // var max=  response.faceRectangle;
-              // $('#response').text('Maxximum: '+max);
-            })
+                })
+                .done(function(response) {
+                    console.log(".done", response)
+                    ProcessResult(response)
+                        // var max=  response.faceRectangle;
+                        // $('#response').text('Maxximum: '+max);
+                })
 
 
-            .fail(function (error) {
-            $("#response").text(error.getAllResponseHeaders());
+            .fail(function(error) {
+                $("#response").text(error.getAllResponseHeaders());
             });
-            }
+        }
 
 
-            function ProcessResult(response)
-            {
-              for(var i=3; i<response.length;i--)
-              var data = JSON.stringify(response[i].scores);
-               $('#response').text(data);
+        function ProcessResult(response) {
+            for (var i = 0; i < response.length; i++) {
+                var data = JSON.stringify(response[i].scores);
+                console.log(data);
+                $('#response').append(data);
+
+                $.ajax({
+                    url: '/upload',
+                    type: 'POST',
+                    data: data,
+                    processData: false,
+                    contentType:  'application/json',
+                    success: function(data) {
+                        console.log('upload successful', data);
+                    },
+
+                });
             }
-</script>
+        }
+    </script>
 
 
     <script type="text/javascript">
-
-
         $('#upload-input').on('change', function() {
 
             var files = $(this).get(0).files;
@@ -145,29 +157,29 @@
                         return xhr;
                     },
 
-                    });
+                });
 
             }
         });
-   </script>
+    </script>
 
 
     <script type=text/javascript>
-    function readURL(input) {
-        // if (input.files && input.files[0]) {
+        function readURL(input) {
+            // if (input.files && input.files[0]) {
             var reader = new FileReader();
 
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 $('#blah').attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
-        // }
-    }
+            // }
+        }
 
-    $("#upload-input").change(function(){
-        readURL(this);
-    });
+        $("#upload-input").change(function() {
+            readURL(this);
+        });
     </script>
 
 
