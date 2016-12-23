@@ -71,31 +71,32 @@
             .done(function (response) {
               var max=  response[1].scores;
               $('#result2').text('Maxximum: '+max);
-
-              $('#result').append('\n'+'Happiness: '+response[1].scores.happiness+'<br>'+' Anger: '+response[1].scores.anger+'<br>'+' Contempt: '+response[1].scores.contempt+'<br>'+' Fear: '+ response[1].scores.fear
-        +'<br>'    +' Sadness: '+response[1].scores.sadness+'<br>'+' Surprise: '+response[1].scores.surprise);
-
-         var array=[response[1].scores.happiness,response[1].scores.anger,response[1].scores.contempt,response[1].scores.fear,response[1].scores.sadness,response[1].scores.surprise];
-         var max=  Math.max.apply(Math,array);
-         $('#result2').text('Maxximum: '+max);
-
-        if(max==response[1].scores.happiness){
-           $('#emotion').text("I'm happy");
-        }
-        else if(max==response[1].scores.anger){
-          $('#emotion').text("I'm angry");
-        }
-        else if(max==response[1].scores.contempt){
-          $('#emotion').text("I'm contemplating");
-        }
-        else if(max==response[1].scores.sadness){
-          $('#emotion').text("I'm sad");
-
-        }
-        else if(max==response[1].scores.surprise){
-          $('#emotion').text("I'm surprised");
-    }
             })
+
+    //           $('#result').append('\n'+'Happiness: '+response[1].scores.happiness+'<br>'+' Anger: '+response[1].scores.anger+'<br>'+' Contempt: '+response[1].scores.contempt+'<br>'+' Fear: '+ response[1].scores.fear
+    //     +'<br>'    +' Sadness: '+response[1].scores.sadness+'<br>'+' Surprise: '+response[1].scores.surprise);
+    //
+    //      var array=[response[1].scores.happiness,response[1].scores.anger,response[1].scores.contempt,response[1].scores.fear,response[1].scores.sadness,response[1].scores.surprise];
+    //      var max=  Math.max.apply(Math,array);
+    //      $('#result2').text('Maxximum: '+max);
+    //
+    //     if(max==response[1].scores.happiness){
+    //        $('#emotion').text("I'm happy");
+    //     }
+    //     else if(max==response[1].scores.anger){
+    //       $('#emotion').text("I'm angry");
+    //     }
+    //     else if(max==response[1].scores.contempt){
+    //       $('#emotion').text("I'm contemplating");
+    //     }
+    //     else if(max==response[1].scores.sadness){
+    //       $('#emotion').text("I'm sad");
+    //
+    //     }
+    //     else if(max==response[1].scores.surprise){
+    //       $('#emotion').text("I'm surprised");
+    // }
+    //         })
 
             .fail(function (error) {
             $("#response").text(error.getAllResponseHeaders());
