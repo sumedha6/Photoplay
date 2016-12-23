@@ -40,7 +40,7 @@
     var apiUrl="https://api.projectoxford.ai/emotion/v1.0/recognize";
     var apiKey="6e1e8ccb31204ae7a636b502b3c93511";
     var result=$('#response');
-    var value=response.scores;
+    var value=response.faceRectangle;
 
     CallAPI(file, apiUrl, apiKey);
     // Emotion(value);
@@ -67,8 +67,9 @@
 
             })
             .done(function (response) {
-              var max=  response[1].scores;
-              $('#response').text('Maxximum: '+max);
+              ProcessResult(response)
+              // var max=  response.faceRectangle;
+              // $('#response').text('Maxximum: '+max);
             })
 
 
@@ -80,8 +81,9 @@
 
             function ProcessResult(response)
             {
-            var data = JSON.stringify(response);
-            $('#response').text(data);
+              for(var i=3; i<response.length;i--)
+              var data = JSON.stringify(response[i].scores);
+               $('#response').text(data);
             }
 </script>
 
