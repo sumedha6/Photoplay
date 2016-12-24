@@ -5,18 +5,18 @@ var formidable = require('formidable');
 var fs = require('fs');
 var bodyparser = require('body-parser');
 var uuid = require('node-uuid');
-var rooms = require('./data/rooms.json');
+var emotions = './data/emotions.json';
+var jsonfile = require('jsonfile');
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json({ strict: false }));
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.post('/', function(req, res) {
-
-    // create an incoming form object
     var form = new formidable.IncomingForm();
 
     // specify that we want to allow the user to upload multiple files in a single request
@@ -46,14 +46,22 @@ app.post('/', function(req, res) {
 
 });
 app.post('/upload', function(req, res) {
-    console.log("req", req.body)
-    var room = {
-        name: req.body,
+    console.log("req", req.body);
+
+    var emotion = {
+        emotions: req.body,
         id: uuid.v4(),
     };
-    rooms.push(room);
-    res.json(room);
+    jsonfile.writeFile(emotions, emotion, function(err) {
+        console.error(err)
+    });
+    res.json(emotion);
 });
+
+app.get('/upload', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public/upload.html'));
+});
+
 
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
