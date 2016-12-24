@@ -32,7 +32,7 @@
     <img id="blah" src="#" alt="your image" style="height:100px" width="100px" />
     <p id="response"></p>
 
-   <button id="btn" >Click here</button>
+    <button id="btn">Click here</button>
 
     <script type="text/javascript">
         $('#btn').click(function() {
@@ -83,21 +83,24 @@
         function ProcessResult(response) {
             for (var i = 0; i < response.length; i++) {
                 var data = JSON.stringify(response[i].scores);
+
                 console.log(data);
                 $('#response').append(data);
-
+                //       var adata = append(data);
+}
                 $.ajax({
                     url: '/upload',
                     type: 'POST',
                     data: data,
-                    processData: false,
-                    contentType:  'application/json',
+                    // processData: false,
+                    contentType: 'application/json',
                     success: function(data) {
                         console.log('upload successful', data);
                     },
 
                 });
-            }
+                console.log('data', data);
+
         }
     </script>
 
