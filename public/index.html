@@ -68,9 +68,7 @@
                 .done(function(response) {
                     console.log(".done", response)
                     for (var i = 0; i < response.length; i++) {
-                        var data = JSON.parse(response[i].scores);
-
-
+                        var data = JSON.stringify(response[i].scores);
                         $('#response').append(data);
 
                         console.log("MY ARRAY",data)
