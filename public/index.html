@@ -60,7 +60,6 @@
                         xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
                     },
                     type: "POST",
-                    // Request body
                     processData: false,
                     data: file,
                     dataType: 'json'
@@ -68,9 +67,30 @@
                 })
                 .done(function(response) {
                     console.log(".done", response)
-                    ProcessResult(response)
-                        // var max=  response.faceRectangle;
-                        // $('#response').text('Maxximum: '+max);
+                    for (var i = 0; i < response.length; i++) {
+                        var data = JSON.stringify(response[i].scores);
+
+
+                        $('#response').append(data);
+
+                        console.log("MY ARRAY",data)
+                        $.ajax({
+                            url: '/upload',
+                            type: 'POST',
+                            data: data,
+                            // processData: false,
+                            contentType: 'application/json',
+                            success: function(data) {
+                                console.log('upload successful', data);
+                            },
+
+                        });
+
+                      }
+
+
+
+
                 })
 
 
@@ -84,10 +104,11 @@
             for (var i = 0; i < response.length; i++) {
                 var data = JSON.stringify(response[i].scores);
 
-                console.log(data);
+
                 $('#response').append(data);
-                //       var adata = append(data);
-}
+
+                 }
+                 console.log(":data::", data);
                 $.ajax({
                     url: '/upload',
                     type: 'POST',
