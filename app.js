@@ -10,7 +10,7 @@ var jsonfile = require('jsonfile');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 
-var url = 'mongodb://localhost:27017/photoplay';
+var url = 'mongodb://localhost:27017/scores';
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyparser.json({ strict: false }));
@@ -68,9 +68,6 @@ app.get('/upload', function(req, res) {
 });
 
 
-var server = app.listen(3000, function() {
-    console.log('Server listening on port 3000');
-});
 
 app.post('/upload', function(req, res) {
     console.log("req", req.body);
@@ -106,4 +103,8 @@ app.post('/upload', function(req, res) {
             db.close();
         }
     });
+});
+
+var server = app.listen(3000, function() {
+    console.log('Server listening on port 3000');
 });
