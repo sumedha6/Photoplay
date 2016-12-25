@@ -10,7 +10,11 @@ var jsonfile = require('jsonfile');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 
-var url = 'mongodb://localhost:27017/scores';
+var mongo = require('mongodb');
+var Grid = require('gridfs-stream');
+var url = 'mongodb://localhost:27017/photoplay';
+var db = new mongo.Db('photoplay', new mongo.Server("127.0.0.1", 27017));
+var gfs = Grid(db, mongo);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyparser.json({ strict: false }));
@@ -18,6 +22,26 @@ app.use(bodyparser.json({ strict: false }));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
+
+
+var writestream = gfs.createWriteStream({
+    filename: 'test.txt'
+});
+fs.createReadStream('/some/path').pipe(writestream);
+
+// streaming from gridfs
+var readstream = gfs.createReadStream({
+  filename: 'test.txt'
+});
+
+//error handling, e.g. file does not exist
+readstream.on('error', function (err) {
+  console.log('An error occurred!', err);
+  throw err;
+});
+
+readstream.pipe(response);
+
 
 app.post('/', function(req, res) {
     var form = new formidable.IncomingForm();
@@ -48,63 +72,53 @@ app.post('/', function(req, res) {
     form.parse(req);
 
 });
-// app.post('/upload', function(req, res) {
-//     console.log("req", req.body);
-//            var emotion = {
-//             emotions: req.body,
-//             id: uuid.v4(),
-//         };
-//
-//     jsonfile.writeFileSync(emotions, emotion, [fs.writeFileSync]); //, function(err) {
-//     //console.error(err)
-//     //});
-//     res.json(emotion);
-//     res.mongoDB(emotion);
-//
-// });
+
 
 app.get('/upload', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/upload.html'));
 });
 
 
+var server = app.listen(3000, function() {
+    console.log('Server listening on port 3000');
+});
 
 app.post('/upload', function(req, res) {
     console.log("req", req.body);
-    MongoClient.connect(url, function(err, db) {
-        if (err) {
-            console.log('Unable to connect to the mongoDB server. Error:', err);
-        } else {
-            //HURRAY!! We are connected.
-            console.log('Connection established to', url);
-
-            // do some work here with the database.
-
-
-            var emotion = {
-                emotions: req.body,
-                id: uuid.v4(),
-            };
-
-            var collection = db.collection('scores');
-            collection.insert(emotion, function(err, result) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
-                }
-            });
-
-
-            // jsonfile.writeFileSync(emotions, emotion, [fs.writeFileSync]); //, function(err) {
-            //console.error(err)
-            //});
-            res.json(emotion);
-            db.close();
-        }
+    // MongoClient.connect(url, function(err, db) {
+    //     if (err) {
+    //         console.log('Unable to connect to the mongoDB server. Error:', err);
+    //     } else {
+    //         //HURRAY!! We are connected.
+    //         console.log('Connection established to', url);
+    //
+    //         // do some work here with the database.
+    //
+    //
+    //         var emotion = {
+    //             emotions: req.body,
+    //             id: uuid.v4(),
+    //         };
+    //
+    //         var collection = db.collection('scores');
+    //         collection.insert(emotion, function(err, result) {
+    //             if (err) {
+    //                 console.log(err);
+    //             } else {
+    //                 console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
+    //             }
+    //         });
+    //
+    //         res.json(emotion);
+    //         db.close();
+    //     }
     });
-});
 
-var server = app.listen(3000, function() {
-    console.log('Server listening on port 3000');
+
+
+
+
+
+
+
 });
