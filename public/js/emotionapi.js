@@ -73,7 +73,7 @@ function ProcessResult(response, name) {
 
         $('#response').append(data);
 
-    }
+
     console.log(":data::", data);
     $.ajax({
         url: '/upload',
@@ -89,6 +89,7 @@ function ProcessResult(response, name) {
         },
 
     });
+  }
     console.log('data', data, name);
 
 }

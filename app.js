@@ -78,14 +78,18 @@ app.post('/upload', function(req, res) {
 
             // do some work here with the database.
 
-
             var emotion = {
-                emotions: req.body,
+                emotions: req.body.emotion,
+                name: req.body.name,
                 id: uuid.v4(),
             };
+            // var emotion = {
+            //     emotions: req.body,
+            //     id: uuid.v4(),
+            // };
 
 
-            var collection = db.collection('scores');
+            var collection = db.collection('photoplay');
             collection.insert(emotion, function(err, result) {
                 if (err) {
                     console.log(err);
@@ -98,12 +102,6 @@ app.post('/upload', function(req, res) {
             db.close();
         }
     });
-
-
-
-
-
-
 
 
 });
