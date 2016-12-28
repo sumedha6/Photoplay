@@ -5,16 +5,11 @@ var formidable = require('formidable');
 var fs = require('fs');
 var bodyparser = require('body-parser');
 var uuid = require('node-uuid');
-var emotions = './data/emotions.json';
 var jsonfile = require('jsonfile');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 
-var mongo = require('mongodb');
-var Grid = require('gridfs-stream');
 var url = 'mongodb://localhost:27017/photoplay';
-var db = new mongo.Db('photoplay', new mongo.Server("127.0.0.1", 27017));
-var gfs = Grid(url, mongo);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyparser.json({ strict: false }));
@@ -55,17 +50,12 @@ app.post('/', function(req, res) {
 
     // parse the incoming request containing the form data
     form.parse(req);
-
-
 });
-
 
 app.get('/upload', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public/upload.html'));
+    // res.sendFile(path.join(__dirname, 'public/upload.html'));
+    res.sendFile(path.join(__dirname, 'public/images/angry.jpg'));
 });
-
-
-
 
 app.post('/upload', function(req, res) {
     console.log("req", req.body);
@@ -83,11 +73,6 @@ app.post('/upload', function(req, res) {
                 name: req.body.name,
                 id: uuid.v4(),
             };
-            // var emotion = {
-            //     emotions: req.body,
-            //     id: uuid.v4(),
-            // };
-
 
             var collection = db.collection('photoplay');
             collection.insert(emotion, function(err, result) {
@@ -105,10 +90,35 @@ app.post('/upload', function(req, res) {
 
 
 });
-app.get('/view', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public/view.html'));
+var dir = path.join(__dirname, 'public');
 
+var mime = {
+    html: 'text/html',
+    txt: 'text/plain',
+    css: 'text/css',
+    gif: 'image/gif',
+    jpg: 'image/jpeg',
+    png: 'image/png',
+    svg: 'image/svg+xml',
+    js: 'application/javascript'
+};
+app.get('/view', function(req, res) {
+    var file = path.join(dir, req.path.replace(/\/$/, '/view.html'));
+    if (file.indexOf(dir + '/') !== 0) {
+        return res.status(403).end('Forbidden');
+    }
+    var type = mime[path.extname(file).slice(1)] || 'text/plain';
+    var s = fs.createReadStream(file);
+    s.on('open', function() {
+        res.set('Content-Type', type);
+        s.pipe(res);
+    });
+    s.on('error', function() {
+        res.set('Content-Type', 'text/plain');
+        res.status(404).end('Not found');
+    });
 });
+
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
 });
