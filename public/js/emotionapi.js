@@ -68,31 +68,32 @@ function CallAPI(file, apiUrl, apiKey) {
 
 function ProcessResult(response, name) {
     for (var i = 0; i < response.length; i++) {
-        // var data = response[i].scores ;
+
         var data=[response[i].scores.happiness,response[i].scores.anger,response[i].scores.contempt,response[i].scores.fear,response[i].scores.sadness,response[i].scores.surprise];
         var max=  Math.max.apply(Math,data);
 
 
-        $('#response').append(data);
+        // $('#response').append(data);
 
         console.log("helllllllll",max);
 
-        if(max==response[i].scores.happiness){
-           console.log("I'm happy");
-        }
-        else if(max==response[i].scores.anger){
-          console.log("I'm angry");
-        }
-        else if(max==response[i].scores.contempt){
-          console.log("I'm contemplating");
-        }
-        else if(max==response[i].scores.sadness){
-          console.log("I'm sad");
+        if (max == response[i].scores.happiness) {
+            console.log("I'm happy");
+            $('#response').append("I'm happy\n");
+        } else if (max == response[i].scores.anger) {
+            console.log("I'm angry");
+            $('#response').append("I'm angry\n");
+        } else if (max == response[i].scores.contempt) {
+            console.log("I'm contemplating");
+            $('#response').append("I'm contemplating\n");
+        } else if (max == response[i].scores.sadness) {
+            console.log("I'm sad");
+            $('#response').append("I'm sad\n");
 
+        } else if (max == response[i].scores.surprise) {
+            console.log("I'm surprised");
+            $('#response').append("I'm surprised\n");
         }
-        else if(max==response[i].scores.surprise){
-          console.log("I'm surprised");
-    }
 
     console.log(":data::", data);
     $.ajax({
