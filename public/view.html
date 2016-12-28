@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>View</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js\angular.min.js"></script>
+    <script src="js\jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/view">View</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <h1>View</h1>
+    <button class="btn btn-lg upload-btn" id="get" type="button">GET</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js\view.js"></script>
+
+
+<script type="text/javascript">
+
+$('#get').click(function() {
+console.log('hey')
+
+    var result;
+
+    $.ajax({
+        url: '/upload',
+           type: 'get',
+           dataType: 'jsonp',
+           jsonp: 'jsonp',
+           success: function (data) {
+               console.log('success', data);
+           },
+           error: function (XMLHttpRequest, textStatus, errorThrown) {
+               console.log('error', errorThrown);
+           }
+       });
+
+       return result;
+
+});
+</script>
+
+
+
+</body>
+
+</html>
