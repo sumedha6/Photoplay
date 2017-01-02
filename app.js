@@ -5,17 +5,18 @@ var formidable = require('formidable');
 var fs = require('fs');
 var bodyparser = require('body-parser');
 var uuid = require('node-uuid');
-var jsonfile = require('jsonfile');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
+var dir = require('node-dir');
 
 var url = 'mongodb://localhost:27017/photoplay';
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(bodyparser.json({ strict: false }));
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
+
 });
 
 
@@ -33,7 +34,7 @@ app.post('/', function(req, res) {
     // rename it to it's orignal name
     form.on('file', function(field, file) {
         fs.rename(file.path, path.join(form.uploadDir, file.name));
-        // res.sendfile(form.uploadDir)
+
     });
 
     // console.log("My File",file.name)
@@ -90,34 +91,49 @@ app.post('/upload', function(req, res) {
 
 
 });
-var dir = path.join(__dirname, 'public');
-
-var mime = {
-    html: 'text/html',
-    txt: 'text/plain',
-    css: 'text/css',
-    gif: 'image/gif',
-    jpg: 'image/jpeg',
-    png: 'image/png',
-    svg: 'image/svg+xml',
-    js: 'application/javascript'
-};
 app.get('/view', function(req, res) {
-    var file = path.join(dir, req.path.replace(/\/$/, '/view.html'));
-    if (file.indexOf(dir + '/') !== 0) {
-        return res.status(403).end('Forbidden');
-    }
-    var type = mime[path.extname(file).slice(1)] || 'text/plain';
-    var s = fs.createReadStream(file);
-    s.on('open', function() {
-        res.set('Content-Type', type);
-        s.pipe(res);
-    });
-    s.on('error', function() {
-        res.set('Content-Type', 'text/plain');
-        res.status(404).end('Not found');
-    });
+    const testFolder = './public/images';
+    var files
+    fs.readdir(testFolder, (err, files) => {
+        files.forEach(file => {
+            console.log(file);
+
+        });
+        res.json(JSON.stringify(files));
+    })
+
+
+
+
+
+
+
 });
+
+// app.get('/images/:name', function(req, res) {
+
+//     var name = req.params.name;
+//     var fileName = function() {
+//         const testFolder = './public/images';
+//         var name = [];
+//         // var i = 0;
+//         fs.readdir(testFolder, (err, files) => {
+//             files.forEach(file => {
+//                 name[file] = {
+//                     name: file,
+//                 };
+//                 //  name.push(file);
+//                 console.log(file, 'hdjhhgd', name);
+//                 //     res.json(JSON.stringify(name));
+
+//                 // res.writeHead(200, { 'Content-Type': 'application/json' });
+//                 // res.end(JSON.stringify(name[file]));
+//             });
+//         });
+//     };
+//     res.json(name);
+// });
+
 
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
