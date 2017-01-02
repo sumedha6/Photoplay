@@ -47,7 +47,7 @@
 
     <button id="btn">Click here</button>
     <button id="btn2">Display</button>
-      <div id='img'>
+      <div id='img'>  </div>
 <script type='text/javascript'>//<![CDATA[
   $('#btn2').click(function() {
     console.log("hel");
@@ -61,9 +61,15 @@
       success: function (data) {
         console.log('success', data);
         console.log('SUMEDHA');
-        var array=[data];
+        var array=data;
         console.log("my array",array)
-        $('#img').html('<img src="image/"+array[0]')
+        var element=array[0];
+        src = "images/"+array[0];
+        $("img").attr("src", src)
+        $('#img').html('<img src=""')
+
+        console.log(src)
+        $('#img').html('<h1>'+'hey')
 
          },
 
