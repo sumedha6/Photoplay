@@ -1,10 +1,10 @@
-$('#get').click(function() {
+$('#btn2').click(function() {
 
 function handler() {
     var result;
 
     $.ajax({
-        url: '/upload',
+        url: '/view',
            type: 'get',
            dataType: 'jsonp',
            jsonp: 'jsonp',
