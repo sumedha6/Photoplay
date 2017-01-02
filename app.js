@@ -99,7 +99,7 @@ app.get('/view', function(req, res) {
             console.log(file);
 
         });
-        res.json(JSON.stringify(files));
+        res.json(files);
     })
 
 
