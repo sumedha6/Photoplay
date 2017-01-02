@@ -29,34 +29,14 @@
     <button class="btn btn-lg upload-btn" id="get" type="button">GET</button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <button id="btn2">Display</button>
+    <div id='img'> </div>
+    <div id='img2'> </div>
+
+
     <script src="js\view.js"></script>
-
-
-<script type="text/javascript">
-
-$('#get').click(function() {
-console.log('hey')
-
-    var result;
-
-    $.ajax({
-        url: '/upload',
-           type: 'get',
-           dataType: 'jsonp',
-           jsonp: 'jsonp',
-           success: function (data) {
-               console.log('success', data);
-           },
-           error: function (XMLHttpRequest, textStatus, errorThrown) {
-               console.log('error', errorThrown);
-           }
-       });
-
-       return result;
-
-});
-</script>
-
 
 
 </body>
