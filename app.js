@@ -106,11 +106,32 @@ app.get('/view-images', function(req, res) {
         });
         res.json(files);
     })
+});
 
 
+app.get('/images/:name', function(req, res) {
+    var name = req.params.filename;
+
+    getName(name, function(data) {
+        name: data;
+        console.log(name);
+        res.render('view', {
+            filename: name,
+        });
+    });
 
 });
 
+function getName(name, callback) {
+    db.photoplay.find({ "name": name }, function(err, objs) {
+        var returnable_name;
+        if (objs.length == 1) {
+            returnable_name = objs[0].emotions;
+            console.log(returnable_name); // this prints "Renato", as it should
+            callback(returnable_name);
+        }
+    })
+}
 
 
 var server = app.listen(3000, function() {
