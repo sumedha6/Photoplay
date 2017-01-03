@@ -109,28 +109,41 @@ app.get('/view-images', function(req, res) {
 });
 
 
-app.get('/images/:name', function(req, res) {
-    var name = req.params.filename;
+app.post('/quotes/:name', function(req, res){
+    var name = req.params.name;
+    // getName(name, function(data) {
+    //     name: data;
+    //     console.log(name);
+    //     res.render('view', {
+    //         filename: name,
+    //     });
+    // });
+    console.log("::name::",name);
 
-    getName(name, function(data) {
-        name: data;
-        console.log(name);
-        res.render('view', {
-            filename: name,
-        });
-    });
+    res.send(name);
 
 });
 
 function getName(name, callback) {
-    db.photoplay.find({ "name": name }, function(err, objs) {
-        var returnable_name;
-        if (objs.length == 1) {
-            returnable_name = objs[0].emotions;
-            console.log(returnable_name); // this prints "Renato", as it should
-            callback(returnable_name);
+    MongoClient.connect(url, function(err, db) {
+        if (err) {
+            console.log('Unable to connect to the mongoDB server. Error:', err);
+        } else {
+            //HURRAY!! We are connected.
+            console.log('Connection established to', url);
+
+            // do some work here with the database.
+            db.photoplay.find({ "name": name }, function(err, objs) {
+                var returnable_name;
+                if (objs.length == 1) {
+                    returnable_name = objs[0].emotions;
+                    console.log(returnable_name); // this prints "Renato", as it should
+                    callback(returnable_name);
+                }
+            });
+            db.close();
         }
-    })
+    });
 }
 
 
