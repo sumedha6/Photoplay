@@ -1,4 +1,7 @@
 //<![CDATA[
+
+var src;
+
 $('#btn2').click(function() {
     console.log("hel");
     $.ajax({
@@ -17,9 +20,10 @@ $('#btn2').click(function() {
             for (var i = 0; i < array.length; i++) {
                 var element = array[i];
                 var $div = $("#img");
-                var src = "images/" + array[i];
+                 src = "images/" + array[i];
                 console.log(src)
                 $("<img />").attr("src", src).appendTo($div);
+                Callfile();
             }
 
         },
@@ -29,4 +33,17 @@ $('#btn2').click(function() {
         }
     });
 
+  function Callfile(){
+    console.log("Printing")
+      $.ajax({
+      url:src,
+      type:'POST',
+      datatype:'json',
+
+      success:function(data){
+        console.log('Sent data',data);
+      }
+
+    })
+ }
 });
