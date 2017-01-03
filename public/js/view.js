@@ -1,6 +1,8 @@
 //<![CDATA[
 
 var src;
+var filename;
+var srcc;
 
 $('#btn2').click(function() {
     console.log("hel");
@@ -21,7 +23,9 @@ $('#btn2').click(function() {
                 var element = array[i];
                 var $div = $("#img");
                  src = "images/" + array[i];
-                console.log(src)
+                 filename=array[i];
+                 srcc="quotes/"+array[i];
+                console.log('my files',filename)
                 $("<img />").attr("src", src).appendTo($div);
                 Callfile();
             }
@@ -36,9 +40,11 @@ $('#btn2').click(function() {
   function Callfile(){
     console.log("Printing")
       $.ajax({
-      url:src,
+      url:srcc,
+      data:filename,
       type:'POST',
       datatype:'json',
+
 
       success:function(data){
         console.log('Sent data',data);
