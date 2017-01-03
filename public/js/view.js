@@ -2,7 +2,7 @@
 $('#btn2').click(function() {
     console.log("hel");
     $.ajax({
-        url: '/view',
+        url: '/view-images',
         type: 'get',
         dataType: 'json',
         jsonp: 'json', // mongod is expecting the parameter name to be called "jsonp"

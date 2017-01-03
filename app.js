@@ -92,6 +92,11 @@ app.post('/upload', function(req, res) {
 
 });
 app.get('/view', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public/view.html'));
+
+});
+
+app.get('/view-images', function(req, res) {
     const testFolder = './public/images';
     var files
     fs.readdir(testFolder, (err, files) => {
@@ -104,35 +109,8 @@ app.get('/view', function(req, res) {
 
 
 
-
-
-
-
 });
 
-// app.get('/images/:name', function(req, res) {
-
-//     var name = req.params.name;
-//     var fileName = function() {
-//         const testFolder = './public/images';
-//         var name = [];
-//         // var i = 0;
-//         fs.readdir(testFolder, (err, files) => {
-//             files.forEach(file => {
-//                 name[file] = {
-//                     name: file,
-//                 };
-//                 //  name.push(file);
-//                 console.log(file, 'hdjhhgd', name);
-//                 //     res.json(JSON.stringify(name));
-
-//                 // res.writeHead(200, { 'Content-Type': 'application/json' });
-//                 // res.end(JSON.stringify(name[file]));
-//             });
-//         });
-//     };
-//     res.json(name);
-// });
 
 
 var server = app.listen(3000, function() {
