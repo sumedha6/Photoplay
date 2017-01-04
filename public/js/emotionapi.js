@@ -102,21 +102,22 @@ function ProcessResult(response, name) {
         }
         console.log(":::emotion::", emotion)
         console.log(":data::", data);
-        $.ajax({
-            url: '/upload',
-            type: 'POST',
-            data: JSON.stringify({
-                emotion: emotion,
-                name: name
-            }),
-            // processData: false,
-            contentType: 'application/json',
-            success: function(data) {
-                console.log('upload successful', data);
-            },
-
-        });
     }
+    $.ajax({
+        url: '/upload',
+        type: 'POST',
+        data: JSON.stringify({
+            emotion: emotion,
+            name: name
+        }),
+        // processData: false,
+        contentType: 'application/json',
+        success: function(data) {
+            console.log('upload successful', data);
+        },
+
+    });
+
     console.log('data', data, name);
 
 }
