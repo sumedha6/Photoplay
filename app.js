@@ -96,14 +96,14 @@ MongoClient.connect(url, function(err, db) {
         res.sendFile(path.join(__dirname, 'public/view.html'));
 
     });
-     var files
+    var files
 
     app.get('/view-images', function(req, res) {
         const testFolder = './public/images';
         // var files
         fs.readdir(testFolder, (err, files) => {
             files.forEach(file => {
-                console.log('Myfiles',file);
+                console.log('Myfiles', file);
 
             });
             res.json(files);
@@ -112,21 +112,34 @@ MongoClient.connect(url, function(err, db) {
 
 
     app.post('/quotes/:name', function(req, res) {
-        var name = req.params.name;
+        var name = '';
+        name = req.params.name;
         var str = '';
         var data = '';
-        console.log("Nmae",name)
-        // var name = req.params.name;
+        console.log("Nmae", name)
+            // var name = req.params.name;
         var value = req.params.emotions;
-        var query = {};
-        query[name] = value;
+        console.log("value", value);
+        var query = { "name": name };
+        // query[name] = value;
         MongoClient.connect(url, function(err, db) {
-            var cursor = db.collection('photo').findOne(query,function(err,doc){
-              console.log("doc::::", doc);
-              str = str + doc.emotions;
-              sendResponse(str);
+            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            cursor.each(function(err, doc) {
+                //   console.log("hey ya i wanna get closer to you", doc.name, name);
+                if (doc != null) {
+                    if (doc.name == req.params.name) {
+                        str = str + doc.emotions + ',';
+                        console.log("hey ya i wanna get closer to you", doc.name, name, req.params.name);
+                        console.log("TYPE OF NAMW", typeof(doc.name), typeof(req.params.name))
 
+                        console.log("doc::::", str); //doc, query, str);
+                    }
+                }
             });
+            console.log("strstr::", str)
+            sendResponse(str);
+
+            //   });
             // cursor.each(function(err, doc) {
             //     console.log("doc::::", doc);
             //     if (doc.name === files) {
