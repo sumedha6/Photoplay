@@ -3,7 +3,7 @@
 var src;
 var filename;
 var srcc;
-var search=document.getElementById("search")
+
 
 $('#btn2').click(function() {
     console.log("hel");
@@ -59,16 +59,20 @@ $('#btn2').click(function() {
 $('#searchme').click(function(){
   console.log("Searching...");
 
+  var search= $(this).find('#search').val()
+
+
 $.ajax({
   url:'/search',
   type:'POST',
   data:search,
+     cache:false,
   dataType:'text',
 
   success:function (data){
-    console.log("Posted",search);
+    console.log("Posted",data);
   }
 })
-console.log("Searching...");
+console.log("Searching...22");
 
 })
