@@ -157,7 +157,7 @@ MongoClient.connect(url, function(err, db) {
 
     app.post('/search', function(req, res) {
         var search = req.body.search;
-
+       var str = '';
 
         MongoClient.connect(url, function(err, db) {
             var cursor = db.collection('photo').find(); //, function(err, doc) {
