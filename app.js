@@ -138,21 +138,6 @@ MongoClient.connect(url, function(err, db) {
             });
             console.log("strstr::", str)
             sendResponse(str);
-
-            //   });
-            // cursor.each(function(err, doc) {
-            //     console.log("doc::::", doc);
-            //     if (doc.name === files) {
-            //         str = str + doc.emotions;
-            //
-            //         sendResponse(str);
-            //     }
-            //     //res.json(JSON.stringify(str));
-            //     console.log("str:::", str);
-            //
-            //     // res.send("hey");
-            //     data = str;
-            // });
             console.log("::namegfdfh::", str);
 
         });
@@ -170,6 +155,29 @@ MongoClient.connect(url, function(err, db) {
         console.log(":::::::strdata:::::", str);
     }
 
+    app.post('/search', function(req, res) {
+        var search = req.body.search;
+
+
+        MongoClient.connect(url, function(err, db) {
+            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            cursor.each(function(err, doc) {
+                //   console.log("hey ya i wanna get closer to you", doc.name, name);
+                if (doc != null) {
+                    if (doc.emotions == search) {
+                        str = str + doc.name + ',';
+                        console.log("hey ya i wanna get closer to you", doc.emotions, search);
+                        console.log("doc::::", str); //doc, query, str);
+                    }
+                }
+            });
+            console.log("strstrsearchkdhfkd::", str)
+            res.send(str);
+
+        });
+
+
+    });
 
 
     db.close();
