@@ -67,50 +67,56 @@ function CallAPI(file, apiUrl, apiKey) {
 
 
 function ProcessResult(response, name) {
+    var emotion = [];
     for (var i = 0; i < response.length; i++) {
 
-        var data=[response[i].scores.happiness,response[i].scores.anger,response[i].scores.contempt,response[i].scores.fear,response[i].scores.sadness,response[i].scores.surprise];
-        var max=  Math.max.apply(Math,data);
+        var data = [response[i].scores.happiness, response[i].scores.anger, response[i].scores.contempt, response[i].scores.fear, response[i].scores.sadness, response[i].scores.surprise];
+        var max = Math.max.apply(Math, data);
 
 
         // $('#response').append(data);
 
-        console.log("helllllllll",max);
+        console.log("helllllllll", max);
 
         if (max == response[i].scores.happiness) {
+            emotion[i] = "happy";
             console.log("I'm happy");
             $('#response').append("I'm happy\n");
         } else if (max == response[i].scores.anger) {
+            emotion[i] = "angry";
             console.log("I'm angry");
             $('#response').append("I'm angry\n");
         } else if (max == response[i].scores.contempt) {
+            emotion[i] = "contemplating";
             console.log("I'm contemplating");
             $('#response').append("I'm contemplating\n");
         } else if (max == response[i].scores.sadness) {
+            emotion[i] = "sad";
             console.log("I'm sad");
             $('#response').append("I'm sad\n");
 
         } else if (max == response[i].scores.surprise) {
+            emotion[i] = "surprised";
             console.log("I'm surprised");
             $('#response').append("I'm surprised\n");
         }
+        console.log(":::emotion::", emotion)
+        console.log(":data::", data);
+        $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: JSON.stringify({
+                emotion: emotion,
+                name: name
+            }),
+            // processData: false,
+            contentType: 'application/json',
+            success: function(data) {
+                console.log('upload successful', data);
+            },
 
-    console.log(":data::", data);
-    $.ajax({
-        url: '/upload',
-        type: 'POST',
-        data: JSON.stringify({
-             emotion: data,
-             name: name
-         }),
-        // processData: false,
-        contentType: 'application/json',
-        success: function(data) {
-            console.log('upload successful', data);
-        },
-
-    });
-  }
+        });
+    }
     console.log('data', data, name);
 
 }
