@@ -57,22 +57,27 @@ $('#btn2').click(function() {
 
 
 $('#searchme').click(function(){
-  console.log("Searching...");
+  var search= document.getElementById('search').value
 
-  var search= $(this).find('#search').val()
+  console.log("Searching...",search);
+
 
 
 $.ajax({
   url:'/search',
   type:'POST',
   data:search,
-     cache:false,
+  cache:false,
   dataType:'text',
 
   success:function (data){
     console.log("Posted",data);
+    console.log(data);
+
+
   }
 })
 console.log("Searching...22");
+console.log("search",search);
 
 })
