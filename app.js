@@ -5,11 +5,11 @@ var formidable = require('formidable');
 var fs = require('fs');
 var bodyparser = require('body-parser');
 var uuid = require('node-uuid');
-var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
+////var mongodb = require('mongodb');
+////var MongoClient = mongodb.MongoClient;
 var dir = require('node-dir');
 
-var url = 'mongodb://localhost:27017/photodb';
+////var url = 'mongodb://localhost:27017/photodb';
 
 app.use(express.static('public'));
 app.use(bodyparser.json({ strict: false }));
@@ -21,15 +21,15 @@ app.get('/', function(req, res) {
 });
 
 
-var MongoClient = require('mongodb').MongoClient,
-    assert = require('assert');
+// // var MongoClient = require('mongodb').MongoClient,
+// //     assert = require('assert');
 
-// Connection URL
-var url = 'mongodb://localhost:27017/photodb';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    console.log("Connected correctly to server");
+// // // Connection URL
+// // var url = 'mongodb://localhost:27017/photodb';
+// // // Use connect method to connect to the Server
+// // MongoClient.connect(url, function(err, db) {
+// //     assert.equal(null, err);
+// //     console.log("Connected correctly to server");
 
 
     app.post('/', function(req, res) {
@@ -77,16 +77,16 @@ MongoClient.connect(url, function(err, db) {
             name: req.body.name,
             id: uuid.v4(),
         };
-        MongoClient.connect(url, function(err, db) {
-            var collection = db.collection('photo');
-            collection.insert(emotion, function(err, result) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('Inserted %d documents into the "scores" collection. The documents inserted with "_id" are:', result.length, result);
-                }
-            });
-        });
+        // // MongoClient.connect(url, function(err, db) {
+        // //     var collection = db.collection('photo');
+        // //     collection.insert(emotion, function(err, result) {
+        // //         if (err) {
+        // //             console.log(err);
+        // //         } else {
+        // //             console.log('Inserted %d documents into the "scores" collection. The documents inserted with "_id" are:', result.length, result);
+        // //         }
+        // //     });
+        // // });
 
         res.json(emotion);
 
@@ -168,32 +168,32 @@ MongoClient.connect(url, function(err, db) {
         console.log("::key::::", key, typeof(key))
 
 
-        MongoClient.connect(url, function(err, db) {
-            var cursor = db.collection('photo').find(); //, function(err, doc) {
-            cursor.each(function(err, doc) {
-                //   console.log("hey ya i wanna get closer to you", doc.name, name);
-                if (doc != null) {
-                    if (doc.emotions === key) {
+        // // MongoClient.connect(url, function(err, db) {
+        // //     var cursor = db.collection('photo').find(); //, function(err, doc) {
+        // //     cursor.each(function(err, doc) {
+        // //         //   console.log("hey ya i wanna get closer to you", doc.name, name);
+        // //         if (doc != null) {
+        // //             if (doc.emotions === key) {
 
-                        console.log("hey u :::", doc.emotions, ":::key:::", key);
-                        //  if (doc.emotions === key) {
+        // //                 console.log("hey u :::", doc.emotions, ":::key:::", key);
+        // //                 //  if (doc.emotions === key) {
 
-                        str = str + doc.name + ',';
-                        console.log("hey ya i wanna get closer to you", doc.emotions, search);
-                        console.log("doc::::", str); //doc, query, str);
-                    }
-                }
-            });
-            // console.log("strstrsearchkdhfkd::", str) res.send(str);
+        // //                 str = str + doc.name + ',';
+        // //                 console.log("hey ya i wanna get closer to you", doc.emotions, search);
+        // //                 console.log("doc::::", str); //doc, query, str);
+        // //             }
+        // //         }
+        // //     });
+        // //     // console.log("strstrsearchkdhfkd::", str) res.send(str);
 
-        });
+        // // });
 
 
     });
 
 
-    db.close();
-});
+// //     db.close();
+// // });
 
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
