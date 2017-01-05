@@ -13,6 +13,8 @@ var url = 'mongodb://localhost:27017/photodb';
 
 app.use(express.static('public'));
 app.use(bodyparser.json({ strict: false }));
+app.use(bodyparser.text());
+app.use(bodyparser.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index.html'));
