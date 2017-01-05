@@ -184,7 +184,7 @@ MongoClient.connect(url, function(err, db) {
                     }
                 }
             });
-            console.log("strstrsearchkdhfkd::", str) res.send(str);
+            // console.log("strstrsearchkdhfkd::", str) res.send(str);
 
         });
 
