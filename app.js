@@ -164,6 +164,8 @@ MongoClient.connect(url, function(err, db) {
             key = i;
             console.log("::key", key, typeof(key))
         }
+
+
         console.log(search, typeof(search));
         console.log("::key::::", key, typeof(key))
 
@@ -171,20 +173,26 @@ MongoClient.connect(url, function(err, db) {
         MongoClient.connect(url, function(err, db) {
             var cursor = db.collection('photo').find(); //, function(err, doc) {
             cursor.each(function(err, doc) {
-                //   console.log("hey ya i wanna get closer to you", doc.name, name);
-                if (doc != null) {
-                    if (doc.emotions === key) {
 
-                        console.log("hey u :::", doc.emotions, ":::key:::", key);
-                        //  if (doc.emotions === key) {
 
-                        str = str + doc.name + ',';
-                        console.log("hey ya i wanna get closer to you", doc.emotions, search);
-                        console.log("doc::::", str); //doc, query, str);
+                for (var i in doc) {
+                    var k = i;
+                    if (k === 'emotions') {
+                        var val = doc[i];
+                        for (var j in val) {
+                            console.log("::::val[j]:::", val[j])
+                            if (val[j] === key) {
+                                str = str + ',' + doc.name + ',';
+                                console.log("doc.name:::", doc.name, str)
+                            }
+                        }
+
                     }
+
+
                 }
+
             });
-           // console.log("strstrsearchkdhfkd::", str) res.send(str);
 
         });
 
