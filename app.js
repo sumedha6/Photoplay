@@ -155,14 +155,12 @@ MongoClient.connect(url, function(err, db) {
 
         console.log(":::::::strdata:::::", str);
     }
+    var str = '';
 
     app.post('/search', function(req, res) {
-      // var _send = res.send;
-      //  var sent = false;
-
         var search = req.body;
         var key = '';
-        var str = '';
+
         for (var i in search) {
             key = i;
             console.log("::key", key, typeof(key))
@@ -174,7 +172,8 @@ MongoClient.connect(url, function(err, db) {
 
 
         MongoClient.connect(url, function(err, db) {
-            var cursor = db.collection('photo').find();
+            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            var file;
             cursor.each(function(err, doc) {
 
 
@@ -192,14 +191,22 @@ MongoClient.connect(url, function(err, db) {
 
                     }
 
-                    res.send(str);
 
                 }
-                console.log("::::::::::::::string:::::::::", str)
 
-      // res.send(str);
+                console.log(":::::::::::::::string:::::::::", str, typeof(str))
+
+                res.end(str);
+                //   res.setHeader('Content-Type', 'text/plain');
+                //  res.send(str)ap
+                // res.json({ file: str });
+                //    res.send("hello");
+
             });
+            console.log("::strlog::", file);
 
+
+            //   res.send(file)
         });
 
 
@@ -209,6 +216,16 @@ MongoClient.connect(url, function(err, db) {
     db.close();
 });
 
+function sendFileName(str) {
+    return str;
+}
+
+app.get('/getfilename', function(req, res) {
+    var filename = sendFileName();
+    console.log(filename, ":::aaaa;;;;", typeof(filename));
+    //res.send(str);
+
+});
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
 });
