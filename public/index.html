@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:white">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#f7f2f2">
         <div class="container">
             <div id="navbar" class="collapse navbar-collapse" style="background-color:white">
                 <ul class="nav navbar-nav">
@@ -47,7 +47,7 @@
 
 
     .............
-    <div class="container" style="background-color:#ffffff">
+    <div class="container" style="background-color:#ffffff;height:100%">
         <div class="row">
             <div class="col-xs-12">
                 <div class="panel panel-default">
@@ -59,19 +59,20 @@
                             <div class="progress-bar" role="progressbar"></div>
                         </div>
                         <button class="btn btn-lg upload-btn" type="button">Upload File</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onchange="readURL()"><br />
-    <img id="blah" src="#" alt="your image" style="height:500px" width="500px" />
+
+    <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onchange="readURL()" style="display:none"><br />
+    <img id="blah" src="#" alt="your image" style="height:auto" width="auto" class="img-responsive"/>
     <p id="response"></p>
 
-    <button id="btn">Click here</button>
+    <button id="btn" class="btn btn-lg">Click here</button>
     <!-- <button id="btn2">Display</button> -->
     <div id='img'> </div>
     <div id='img2'> </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
 
 
 
