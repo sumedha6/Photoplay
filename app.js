@@ -157,39 +157,42 @@ MongoClient.connect(url, function(err, db) {
     }
 
     app.post('/search', function(req, res) {
-            var search = req.body;
-            var key = '';
-            var str = '';
-            for (var i in search) {
-                key = i;
-                console.log("::key", key, typeof(key))
-            }
-            console.log(search, typeof(search));
-            console.log("::key::::", key, typeof(key))
+        var search = req.body;
+        var key = '';
+        var str = '';
+        for (var i in search) {
+            key = i;
+            console.log("::key", key, typeof(key))
+        }
+        console.log(search, typeof(search));
+        console.log("::key::::", key, typeof(key))
 
 
-            MongoClient.connect(url, function(err, db) {
-                    var cursor = db.collection('photo').find(); //, function(err, doc) {
-                    cursor.each(function(err, doc) {
-                            //   console.log("hey ya i wanna get closer to you", doc.name, name);
-                            if (doc != null) {
-                                console.log("hey u :::", doc.emotions, ":::key:::", key);
-                                //  if (doc.emotions === key) {
+        MongoClient.connect(url, function(err, db) {
+            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            cursor.each(function(err, doc) {
+                //   console.log("hey ya i wanna get closer to you", doc.name, name);
+                if (doc != null) {
+                    if (doc.emotions === key) {
 
-                                str = str + doc.name + ',';
-                                console.log("hey ya i wanna get closer to you", doc.emotions, search);
-                                console.log("doc::::", str); //doc, query, str);
-                            }
-                        }
-                    }); console.log("strstrsearchkdhfkd::", str) res.send(str);
+                        console.log("hey u :::", doc.emotions, ":::key:::", key);
+                        //  if (doc.emotions === key) {
 
+                        str = str + doc.name + ',';
+                        console.log("hey ya i wanna get closer to you", doc.emotions, search);
+                        console.log("doc::::", str); //doc, query, str);
+                    }
+                }
             });
+           // console.log("strstrsearchkdhfkd::", str) res.send(str);
+
+        });
 
 
     });
 
 
-db.close();
+    db.close();
 });
 
 var server = app.listen(3000, function() {
