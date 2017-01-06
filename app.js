@@ -157,6 +157,9 @@ MongoClient.connect(url, function(err, db) {
     }
 
     app.post('/search', function(req, res) {
+      // var _send = res.send;
+      //  var sent = false;
+
         var search = req.body;
         var key = '';
         var str = '';
@@ -171,7 +174,7 @@ MongoClient.connect(url, function(err, db) {
 
 
         MongoClient.connect(url, function(err, db) {
-            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            var cursor = db.collection('photo').find();
             cursor.each(function(err, doc) {
 
 
@@ -189,9 +192,12 @@ MongoClient.connect(url, function(err, db) {
 
                     }
 
+                    res.send(str);
 
                 }
+                console.log("::::::::::::::string:::::::::", str)
 
+      // res.send(str);
             });
 
         });
