@@ -173,18 +173,25 @@ MongoClient.connect(url, function(err, db) {
             cursor.each(function(err, doc) {
                 //   console.log("hey ya i wanna get closer to you", doc.name, name);
                 if (doc != null) {
-                    if (doc.emotions === key) {
+                    var em = doc.emotions
+                    console.log("Arrayoooooooooooo",em[1])
+                    console.log("hey u :::", doc.emotions, ":::key:::", key, "::EM", em, typeof(em));
+                    for(i=0;i<em.length;i++){
 
-                        console.log("hey u :::", doc.emotions, ":::key:::", key);
-                        //  if (doc.emotions === key) {
+
+                    if (em[i] === key) {
+
+
+                        console.log("Matched");
 
                         str = str + doc.name + ',';
                         console.log("hey ya i wanna get closer to you", doc.emotions, search);
-                        console.log("doc::::", str); //doc, query, str);
+                        console.log("goood:", str); //doc, query, str);
                     }
                 }
+              }
             });
-           // console.log("strstrsearchkdhfkd::", str) res.send(str);
+            // console.log("strstrsearchkdhfkd::", str) res.send(str);
 
         });
 
