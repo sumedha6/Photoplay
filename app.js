@@ -151,11 +151,9 @@ MongoClient.connect(url, function(err, db) {
     });
 
     function sendResponse(str) {
-        // res.json(JSON.stringify(str));
-
         console.log(":::::::strdata:::::", str);
     }
-    var str = '';
+
 
     app.post('/search', function(req, res) {
         var search = req.body;
@@ -166,14 +164,10 @@ MongoClient.connect(url, function(err, db) {
             console.log("::key", key, typeof(key))
         }
 
-
-        console.log(search, typeof(search));
-        console.log("::key::::", key, typeof(key))
-
-
         MongoClient.connect(url, function(err, db) {
             var cursor = db.collection('photo').find(); //, function(err, doc) {
-            var file;
+            var count = 0;
+            var str = [];
             cursor.each(function(err, doc) {
 
 
@@ -184,48 +178,33 @@ MongoClient.connect(url, function(err, db) {
                         for (var j in val) {
                             console.log("::::val[j]:::", val[j])
                             if (val[j] === key) {
-                                str = str + ',' + doc.name + ',';
+                                if (doc.name != null)
+                                    str[j] = doc.name;
                                 console.log("doc.name:::", doc.name, str)
                             }
                         }
 
                     }
-
-
+                    count++;
                 }
 
-                console.log(":::::::::::::::string:::::::::", str, typeof(str))
-
-                res.end(str);
-                //   res.setHeader('Content-Type', 'text/plain');
-                //  res.send(str)ap
-                // res.json({ file: str });
-                //    res.send("hello");
+                cursor.count().then(function(cursor_count) {
+                    if (cursor_count) {
+                        res.send(str);
+                    } else {
+                        // no results
+                    }
+                });
 
             });
-            console.log("::strlog::", file);
-
-
-            //   res.send(file)
         });
 
 
     });
 
-
     db.close();
 });
 
-function sendFileName(str) {
-    return str;
-}
-
-app.get('/getfilename', function(req, res) {
-    var filename = sendFileName();
-    console.log(filename, ":::aaaa;;;;", typeof(filename));
-    //res.send(str);
-
-});
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
 });
