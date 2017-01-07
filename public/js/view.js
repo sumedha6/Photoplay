@@ -73,15 +73,17 @@ $.ajax({
   success:function (data){
     console.log("Posted",data);
     console.log(data);
+    var a=data;
     $.ajax({
       url:'/image',
       method:'GET',
       dataType:'json',
       contentType:"image/jpg",
 
-      success:function(data){
+
+      success:function(a){
         console.log("Getting the image");
-        var stack=data;
+        var stack=a;
         console.log("my files", stack)
 
         for (var i = 0; i < array.length; i++) {
