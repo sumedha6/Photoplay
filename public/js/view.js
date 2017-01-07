@@ -73,38 +73,48 @@ $.ajax({
   success:function (data){
     console.log("Posted",data);
     console.log(data);
-    var a=data;
-    $.ajax({
-      url:'/image',
-      method:'GET',
-      dataType:'json',
-      contentType:"image/jpg",
 
 
-      success:function(a){
-        console.log("Getting the image");
-        var stack=a;
-        console.log("my files", stack)
 
-        for (var i = 0; i < array.length; i++) {
-            var element = array[i];
-            var $div = $("#img2");
-             src = "images/" + array[i];
-             filename=array[i];
-             srcc="quotes/"+array[i];
-            console.log('my files',filename)
-            $("<img />").attr("src", src).appendTo($div);
-      }
-    }
-  });
-
-
-  }
-});
+         }
+       });
 console.log("Searching...22");
 console.log("search",search);
 
 
 
-
 });
+
+
+
+$('#btn3').click(function(){
+
+// })
+// function display(){
+  console.log("ddddddddddd")
+  $.ajax({
+    url:'/image',
+    method:'GET',
+    // dataType:'json',
+
+    jsonp: 'json', // mongod is expecting the parameter name to be called "jsonp"
+
+    contentType:"image/jpg",
+     success:function(data){
+
+      console.log("Getting the image");
+      var stack=data;
+      console.log("my files", stack)
+
+      for (var i = 0; i < stack.length; i++) {
+          var element = stack[i];
+          var $div = $("#img2");
+           src = "images/" + stack[i];
+           filename=stack[i];
+          console.log('my files',filename)
+          $("<img />").attr("src", src).appendTo($div);
+    }
+  }
+});
+
+})
