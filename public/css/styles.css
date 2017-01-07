@@ -18,7 +18,7 @@ body {
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
-background-color: #ce2ac9;
+background-color: #b7339b;
 }
 p{
   font-family:cursive;
@@ -27,7 +27,7 @@ p{
 
 .upload-btn {
   color: #ffffff;
-  background-color: #F89406;
+  background-color: #b7339b;
   border: none;
 }
 .intro-header {

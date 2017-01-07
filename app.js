@@ -32,7 +32,7 @@ MongoClient.connect(url, function(err, db) {
     console.log("Connected correctly to server");
 
 
-    app.post('/', function(req, res) {
+      app.post('/', function(req, res) {
         var form = new formidable.IncomingForm();
 
         // specify that we want to allow the user to upload multiple files in a single request
@@ -91,6 +91,18 @@ MongoClient.connect(url, function(err, db) {
         res.json(emotion);
 
     });
+
+app.get('/image/:filename',function(req,res){
+  const folder='./public/images';
+  fs.readdir(folder,(err,files)=>{
+    files.forEach(file=>{
+      console.log(file);
+    });
+    res.send(files);
+  })
+})
+
+
 
 
     app.get('/view', function(req, res) {
@@ -164,8 +176,8 @@ MongoClient.connect(url, function(err, db) {
             console.log("::key", key, typeof(key))
         }
 
-        MongoClient.connect(url, function(err, db) {
-            var cursor = db.collection('photo').find(); //, function(err, doc) {
+            MongoClient.connect(url, function(err, db) {
+          var cursor = db.collection('photo').find(); //, function(err, doc) {
             var count = 0;
             var str = [];
             cursor.each(function(err, doc) {
@@ -176,19 +188,20 @@ MongoClient.connect(url, function(err, db) {
                     if (k === 'emotions') {
                         var val = doc[i];
                         for (var j in val) {
-                            console.log("::::val[j]:::", val[j])
                             if (val[j] === key) {
                                 if (doc.name != null)
                                     str[j] = doc.name;
-                                console.log("doc.name:::", doc.name, str)
-                            }
-                        }
+                                    console.log("::::val[j]:::", val[j])
+
+                                    console.log("doc.name:::", doc.name, str)
+                             }
+                         }
 
                     }
                     count++;
                 }
 
-                cursor.count().then(function(cursor_count) {
+                  cursor.count().then(function(cursor_count) {
                     if (cursor_count) {
                         res.send(str);
                     } else {
