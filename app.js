@@ -81,7 +81,7 @@ MongoClient.connect(url, function(err, db) {
             var collection = db.collection('photo');
             collection.insert(emotion, function(err, result) {
                 if (err) {
-                    console.log(err);
+                      console.log(err);
                 } else {
                     console.log('Inserted %d documents into the "scores" collection. The documents inserted with "_id" are:', result.length, result);
                 }
@@ -92,15 +92,6 @@ MongoClient.connect(url, function(err, db) {
 
     });
 
-app.get('/image/:filename',function(req,res){
-  const folder='./public/images';
-  fs.readdir(folder,(err,files)=>{
-    files.forEach(file=>{
-      console.log(file);
-    });
-    res.send(files);
-  })
-})
 
 
 
@@ -170,7 +161,7 @@ app.get('/image/:filename',function(req,res){
     app.post('/search', function(req, res) {
         var search = req.body;
         var key = '';
-
+var str=[];
         for (var i in search) {
             key = i;
             console.log("::key", key, typeof(key))
@@ -179,7 +170,6 @@ app.get('/image/:filename',function(req,res){
             MongoClient.connect(url, function(err, db) {
           var cursor = db.collection('photo').find(); //, function(err, doc) {
             var count = 0;
-            var str = [];
             cursor.each(function(err, doc) {
 
 
@@ -217,6 +207,15 @@ app.get('/image/:filename',function(req,res){
 
     db.close();
 });
+
+
+// function send(){
+//   console.log("sssssssssssss",str)
+// }
+// app.get('/image',function(req,res){
+//   send();
+// })
+
 
 var server = app.listen(3000, function() {
     console.log('Server listening on port 3000');
