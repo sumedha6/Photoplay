@@ -17,6 +17,14 @@ body {
   margin-top: 80px;
 }
 
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+background-color: #ce2ac9;
+}
+p{
+  font-family:cursive;
+  font-size:25px;
+}
+
 .upload-btn {
   color: #ffffff;
   background-color: #F89406;
