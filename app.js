@@ -212,11 +212,14 @@ var str=[];
 // function send(){
 //   console.log("sssssssssssss",str)
 // }
-// app.get('/image',function(req,res){
-//   send();
-// })
+app.get('/image',function(req,res){
+  // send();
+  console.log("heelll")
+  res.end("heyyyy")
+
+})
 
 
-var server = app.listen(3000, function() {
+var server = app.listen(3000, function(req,res) {
     console.log('Server listening on port 3000');
 });
