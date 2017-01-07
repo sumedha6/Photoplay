@@ -29,16 +29,19 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-sm-12 col-md-12">
                 <div class="intro-message">
-                    <h1>Welcome</h1>
+                     <h1>Welcome</h1>
                     <h3>Get a Snap</h3>
                     <hr class="intro-divider">
 
                 </div>
-                <h1> <span class="glyphicon glyphicon-chevron-down" id="arrow"></span>
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                <center>    <h1> <span class="img-responsive glyphicon glyphicon-chevron-down" id="arrow" style="position:bottom"></span></center>
+                </div>
 
             </div>
+
         </div>
 
     </div>
@@ -72,10 +75,12 @@ $("#arrow").click(function() {
     <br><br>
   <center>  <img id="blah" src="#" onerror="this.src='images/ghost.png'" alt="your image" style="height:auto" width="auto" class="img-responsive"/></center>
 
-    <p id="response"></p>
 
     <button id="btn" class="btn btn-lg" style="background-color:#F89406;color:white">Click here</button>
+    <br><br>
     <!-- <button id="btn2">Display</button> -->
+    <p id="response"></p>
+
     <div id='img'> </div>
     <div id='img2'> </div>
   </div>
@@ -85,16 +90,6 @@ $("#arrow").click(function() {
 </div>
 </div>
 
-<style>
-img:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-image:url( ../images/ghost.png);
-  }
-</style>
 
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
