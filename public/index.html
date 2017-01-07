@@ -24,7 +24,7 @@
             </div>
         </div>
     </nav>
-..............
+
 <div class="intro-header" style="height:100%">
     <div class="container">
 
@@ -53,23 +53,25 @@ $("#arrow").click(function() {
     }, 1000);
 });
 </script>
-    .............
+
     <div style="height:100%" id="SearchDiv">
     <div class="container" style="background-color:#ffffff;height:auto">
         <div class="row" tyle="height:auto">
             <div class="col-xs-12">
                 <div class="panel panel-default" >
                     <div class="panel-body">
-                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        <span class="img-responsive glyphicon glyphicon-cloud-upload" style="color:#b7339b"></span>
                         <h2>File Uploader</h2>
 
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"></div>
+                            <div class="progress-bar" role="progressbar" style="background-color:#b7339b"></div>
                         </div>
                         <button class="btn btn-lg upload-btn" type="button">Upload File</button>
 
     <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onchange="readURL()" style="display:none"><br />
-  <center>  <img id="blah" src="#" alt="your image" style="height:auto" width="auto" class="img-responsive"/></center>
+    <br><br>
+  <center>  <img id="blah" src="#" onerror="this.src='images/ghost.png'" alt="your image" style="height:auto" width="auto" class="img-responsive"/></center>
+
     <p id="response"></p>
 
     <button id="btn" class="btn btn-lg" style="background-color:#F89406;color:white">Click here</button>
@@ -83,6 +85,16 @@ $("#arrow").click(function() {
 </div>
 </div>
 
+<style>
+img:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-image:url( ../images/ghost.png);
+  }
+</style>
 
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
