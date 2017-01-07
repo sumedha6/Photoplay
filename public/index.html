@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#f7f2f2">
         <div class="container">
-            <div id="navbar" class="collapse navbar-collapse" style="background-color:white">
+            <div id="navbar" class="collapse navbar-collapse" style="background-color:#f7f2f2">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="view">View</a></li>
@@ -36,6 +36,8 @@
                     <hr class="intro-divider">
 
                 </div>
+                <h1> <span class="glyphicon glyphicon-chevron-down" id="arrow"></span>
+
             </div>
         </div>
 
@@ -44,13 +46,19 @@
 
 </div>
 
-
-
+<script type=text/javascript>
+$("#arrow").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#SearchDiv").offset().top
+    }, 1000);
+});
+</script>
     .............
-    <div class="container" style="background-color:#ffffff;height:100%">
-        <div class="row">
+    <div style="height:100%" id="SearchDiv">
+    <div class="container" style="background-color:#ffffff;height:auto">
+        <div class="row" tyle="height:auto">
             <div class="col-xs-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default" >
                     <div class="panel-body">
                         <span class="glyphicon glyphicon-cloud-upload"></span>
                         <h2>File Uploader</h2>
@@ -61,10 +69,10 @@
                         <button class="btn btn-lg upload-btn" type="button">Upload File</button>
 
     <input id="upload-input" type="file" name="uploads[]" multiple="multiple" onchange="readURL()" style="display:none"><br />
-    <img id="blah" src="#" alt="your image" style="height:auto" width="auto" class="img-responsive"/>
+  <center>  <img id="blah" src="#" alt="your image" style="height:auto" width="auto" class="img-responsive"/></center>
     <p id="response"></p>
 
-    <button id="btn" class="btn btn-lg">Click here</button>
+    <button id="btn" class="btn btn-lg" style="background-color:#F89406;color:white">Click here</button>
     <!-- <button id="btn2">Display</button> -->
     <div id='img'> </div>
     <div id='img2'> </div>
@@ -73,7 +81,7 @@
 </div>
 </div>
 </div>
-
+</div>
 
 
 
@@ -83,7 +91,6 @@
     <script src="js\sendfile.js"></script>
     <script src="js\readURL.js"></script>
     <script src="js\view.js"></script>
-    <script src="js\imageCall.js"></script>
 
 
 
