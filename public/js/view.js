@@ -80,23 +80,25 @@ $('#searchme').click(function() {
             }
             var file = [];
 
-                   file[0] = e[0];
-                   var j = 0;
-                   for (var i = 0; i < e.length; i++) {
-                       for (var k = 0; k <= j; k++) {
-                           if (e[i] != file[j]) {
-                               j++;
-                               file[j] = e[i];
-                           }
-                       }
-                   }
-                   for (var i = 0; i < file.length; i++) {
-                                       var element = e[i];
-                                       var $div = $("#img2");
-                                       src = "images/" + file[i];
-                                       filename = file[i];
-                                       console.log('my files', filename)
-                                       $("<img />").attr("src", src).appendTo($div);
+            file[0] = e[0];
+            var j = 0;
+            for (var i = 0; i < e.length; i++) {
+                for (var k = 0; k <= j; k++) {
+                    if (e[i] != file[j] && e[i] != null) {
+                        j++;
+                        file[j] = e[i];
+                    }
+                }
+                //      j = 0;
+            }
+            console.log(":::file:::", file)
+            for (var i = 0; i < file.length; i++) {
+                var element = e[i];
+                var $div = $("#img2");
+                src = "images/" + file[i];
+                filename = file[i];
+                console.log('my files', filename)
+                $("<img />").attr("src", src).appendTo($div);
             }
 
             // filename(e);
