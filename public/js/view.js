@@ -94,24 +94,36 @@ $('#searchme').click(function() {
             }
             console.log(":::file:::", file)
             for (var i = 0; i < file.length; i++) {
-                var element = e[i];
-                var $div = $("#img2");
-                src = "images/" + file[i];
-                filename = file[i];
-                console.log('my files', filename)
-                count++;
+              var element = e[i];
+              var $div = $("#img2");
 
-                $("<img />").attr("src", src).appendTo($div);
+              filename = file[i];
 
-            }
-                 console.log(count);
+              console.log('my files', filename)
+              if (file[i] != null) {
+                  count++;
+                  src = "images/" + filename;
+                  console.log("LLLLsrcLLL::", src);
+              }
+              // $("<img />").attr("src", src).appendTo($div);
 
-                 for(var a=0;a<count;a++){
-                   $('body').append('<div  style="background-color:red">Test </div>');
-                 }
-            // filename(e);
-        }
-    })
-    console.log("Searching...22");
-    console.log("search", search);
+              //           }
+          // }
+          console.log(count);
+
+          // for (var a = 0; a < count; a++) {
+              $('body').append('<div class="col-md-12 col-lg-12" id="page" style="background-color:red"><img/> </div>');
+              var $div = $("#page");
+              console.log("MMMMsrcMMM::", src);
+              var class2=" img-responsive";
+              $("<img />").attr("class",class2).appendTo($div);
+              $("<img />").attr("src", src).appendTo($div);
+
+          }
+          // filename(e);
+
+      }
+  })
+  console.log("Searching...22");
+  console.log("search", search);
 });
