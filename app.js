@@ -32,7 +32,7 @@ MongoClient.connect(url, function(err, db) {
     console.log("Connected correctly to server");
 
 
-      app.post('/', function(req, res) {
+    app.post('/', function(req, res) {
         var form = new formidable.IncomingForm();
 
         // specify that we want to allow the user to upload multiple files in a single request
@@ -81,7 +81,7 @@ MongoClient.connect(url, function(err, db) {
             var collection = db.collection('photo');
             collection.insert(emotion, function(err, result) {
                 if (err) {
-                      console.log(err);
+                    console.log(err);
                 } else {
                     console.log('Inserted %d documents into the "scores" collection. The documents inserted with "_id" are:', result.length, result);
                 }
@@ -161,14 +161,14 @@ MongoClient.connect(url, function(err, db) {
     app.post('/search', function(req, res) {
         var search = req.body;
         var key = '';
-var str=[];
+        var str = [];
         for (var i in search) {
             key = i;
             console.log("::key", key, typeof(key))
         }
 
-            MongoClient.connect(url, function(err, db) {
-          var cursor = db.collection('photo').find(); //, function(err, doc) {
+        MongoClient.connect(url, function(err, db) {
+            var cursor = db.collection('photo').find(); //, function(err, doc) {
             var count = 0;
             cursor.each(function(err, doc) {
 
@@ -181,24 +181,26 @@ var str=[];
                             if (val[j] === key) {
                                 if (doc.name != null)
                                     str[j] = doc.name;
-                                    console.log("::::val[j]:::", val[j])
+                                //  console.log("::::val[j]:::", val[j])
 
-                                    console.log("doc.name:::", doc.name, str)
-                             }
-                         }
+                                console.log("doc.name:::", str)
+                            }
+                        }
 
                     }
                     count++;
                 }
 
-                  cursor.count().then(function(cursor_count) {
-                    if (cursor_count) {
-                        res.send(str);
-                    } else {
-                        // no results
-                    }
-                });
 
+
+            });
+            cursor.count().then(function(cursor_count) {
+                if (cursor_count) {
+                    console.log(":::count:::", str);
+                    res.send(str);
+                } else {
+                    // no results
+                }
             });
         });
 
@@ -212,14 +214,14 @@ var str=[];
 // function send(){
 //   console.log("sssssssssssss",str)
 // }
-app.get('/image',function(req,res){
-  // send();
-  console.log("heelll")
-  res.end("heyyyy")
+app.get('/image', function(req, res) {
+    // send();
+    console.log("heelll")
+    res.end("heyyyy")
 
 })
 
 
-var server = app.listen(3000, function(req,res) {
+var server = app.listen(3000, function(req, res) {
     console.log('Server listening on port 3000');
 });
