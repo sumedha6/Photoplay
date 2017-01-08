@@ -79,6 +79,7 @@ $('#searchme').click(function() {
 
             }
             var file = [];
+            var count=0;
 
             file[0] = e[0];
             var j = 0;
@@ -89,7 +90,7 @@ $('#searchme').click(function() {
                         file[j] = e[i];
                     }
                 }
-                //      j = 0;
+                     j = 0;
             }
             console.log(":::file:::", file)
             for (var i = 0; i < file.length; i++) {
@@ -98,58 +99,19 @@ $('#searchme').click(function() {
                 src = "images/" + file[i];
                 filename = file[i];
                 console.log('my files', filename)
-                $("<img />").attr("src", src).appendTo($div);
-            }
+                count++;
 
+                $("<img />").attr("src", src).appendTo($div);
+
+            }
+                 console.log(count);
+
+                 for(var a=0;a<count;a++){
+                   $('body').append('<div  style="background-color:red">Test </div>');
+                 }
             // filename(e);
         }
     })
     console.log("Searching...22");
     console.log("search", search);
 });
-
-
-
-
-// function filename(e) {
-//     $('#btn3').click(function() {
-//         var file = [];
-
-//         file[0] = e[0];
-//         var j = 0;
-//         for (var i = 0; i < e.length; i++) {
-//             for (var k = 0; k <= j; k++) {
-//                 if (e[i] != file[j]) {
-//                     j++;
-//                     file[j] = e[i];
-//                 }
-//             }
-//         }
-
-
-//         $.ajax({
-//             url: '/image',
-//             method: 'GET',
-//             jsonp: 'json',
-
-//             contentType: "image/jpg",
-//             success: function(data) {
-
-//                 console.log("Getting the image");
-//                 var stack = data;
-//                 console.log("my files", e)
-
-
-//                 for (var i = 0; i < file.length; i++) {
-//                     var element = e[i];
-//                     var $div = $("#img2");
-//                     src = "images/" + file[i];
-//                     filename = file[i];
-//                     console.log('my files', filename)
-//                     $("<img />").attr("src", src).appendTo($div);
-//                 }
-//             }
-//         });
-
-//     })
-// }
