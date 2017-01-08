@@ -111,3 +111,12 @@ h2 {
     width: 450px;
   }
 }
+
+#page{
+  height:100px;
+  width:100px;
+}
+
+img{
+  display:none;
+}
