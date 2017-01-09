@@ -112,12 +112,19 @@ $('#searchme').click(function() {
           console.log(count);
 
           // for (var a = 0; a < count; a++) {
-              $('body').append('<div class="col-md-12 col-lg-12" id="page" style="background-color:red"><img/> </div>');
+              $('body').append('<div class="col-md-12 col-lg-12" id="page" ><img "/> </div>');
               var $div = $("#page");
               console.log("MMMMsrcMMM::", src);
               var class2=" img-responsive";
-              $("<img />").attr("class",class2).appendTo($div);
+              // var height="height:100px";
+              // $("<img />").attr("style",height).appendTo($div);
+
+              // $("<img />").attr("class",class2).appendTo($div);
               $("<img />").attr("src", src).appendTo($div);
+              $("img").css({"height":"150px"});
+              // $('img').css({"color":"green"});
+
+
 
           }
           // filename(e);
