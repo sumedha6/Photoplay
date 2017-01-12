@@ -13,6 +13,8 @@
 </head>
 
 <body>
+  <div class="se-pre-con"></div>
+
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#f7f2f2">
         <div class="container">
             <div id="navbar" class="collapse navbar-collapse" style="background-color:#f7f2f2">
@@ -27,6 +29,7 @@
 
 <div class="intro-header" style="height:100%">
     <div class="container">
+      <!-- <div id="loader">heyyyyyyyyyyy</div> -->
 
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-md-12">
@@ -55,6 +58,10 @@ $("#arrow").click(function() {
         scrollTop: $("#SearchDiv").offset().top
     }, 1000);
 });
+$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut(5000);;
+	});
 </script>
 
     <div style="height:100%" id="SearchDiv">

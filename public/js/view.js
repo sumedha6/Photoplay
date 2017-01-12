@@ -108,7 +108,7 @@ $('#searchme').click(function() {
 
                 console.log(count);
 
-                $('body').append('<div class="container" style="background-color:#ffffff;height:auto;padding-top:50px"><div class="col-md-12 col-lg-12" id="page" > <img "/> </div></div>');
+                $('body').append('<div class="container" style="padding-top:50px"><div class="col-md-12 col-lg-12" id="page" > <img "/> </div></div>');
                 var $div = $("#page");
                 console.log("MMMMsrcMMM::", src);
                 var class2 = " img-responsive";
@@ -119,11 +119,11 @@ $('#searchme').click(function() {
 
                 src = '';
                 $( "#search" ).change(function() {
-                  $('img').fadeOut('slow');
+                  $('img').fadeOut(500);
                   });
-                  // $("#searchme").click(function(){
-                  //   $('#search').slideUp('slow');
-                  // })
+                  $("#searchme").click(function(){
+                    $('#searchit').slideUp('slow');
+                  })
 
 
             }
