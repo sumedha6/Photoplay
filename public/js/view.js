@@ -79,7 +79,7 @@ $('#searchme').click(function() {
 
             }
             var file = [];
-            var count=0;
+            var count = 0;
 
             file[0] = e[0];
             var j = 0;
@@ -90,47 +90,48 @@ $('#searchme').click(function() {
                         file[j] = e[i];
                     }
                 }
-                     j = 0;
+                j = 0;
             }
             console.log(":::file:::", file)
             for (var i = 0; i < file.length; i++) {
-              var element = e[i];
-              var $div = $("#img2");
+                var element = e[i];
+                var $div = $("#img2");
 
-              filename = file[i];
+                filename = file[i];
 
-              console.log('my files', filename)
-              if (file[i] != null) {
-                  count++;
-                  src = "images/" + filename;
-                  console.log("LLLLsrcLLL::", src);
-              }
-              // $("<img />").attr("src", src).appendTo($div);
+                console.log('my files', filename)
+                if (file[i] != null) {
+                    count++;
+                    src = "images/" + filename;
+                    console.log("LLLLsrcLLL::", src);
+                }
+                // $("<img />").attr("src", src).appendTo($div);
 
-              //           }
-          // }
-          console.log(count);
+                //           }
+                // }
+                console.log(count);
 
-          // for (var a = 0; a < count; a++) {
-              $('body').append('<div class="col-md-12 col-lg-12" id="page" ><img "/> </div>');
-              var $div = $("#page");
-              console.log("MMMMsrcMMM::", src);
-              var class2=" img-responsive";
-              // var height="height:100px";
-              // $("<img />").attr("style",height).appendTo($div);
+                // for (var a = 0; a < count; a++) {
+                $('body').append('<div class="container" style="background-color:#ffffff;height:auto"><div class="col-md-12 col-lg-12" id="page" > <img "/> </div></div>');
+                var $div = $("#page");
+                console.log("MMMMsrcMMM::", src);
+                var class2 = " img-responsive";
+                // var height="height:100px";
+                // $("<img />").attr("style",height).appendTo($div);
 
-              // $("<img />").attr("class",class2).appendTo($div);
-              $("<img />").attr("src", src).appendTo($div);
-              $("img").css({"height":"150px"});
-              // $('img').css({"color":"green"});
+                // $("<img />").attr("class",class2).appendTo($div);
+                $("<img />").attr("src", src).appendTo($div);
+                $("img").css({ "height": "350px" });
+                src = '';
+                // $('img').css({"color":"green"});
 
 
 
-          }
-          // filename(e);
+            }
+            // filename(e);
 
-      }
-  })
-  console.log("Searching...22");
-  console.log("search", search);
+        }
+    })
+    console.log("Searching...22");
+    console.log("search", search);
 });
