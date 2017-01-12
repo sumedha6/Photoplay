@@ -2,46 +2,70 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="css/styles.css" rel="stylesheet">
     <script src="js\angular.min.js"></script>
     <script src="js\jquery.min.js"></script>
+    <script src="js\autocomplete.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <h1>View</h1>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#f7f2f2">
         <div class="container">
-            <div id="navbar" class="collapse navbar-collapse">
+            <div id="navbar" class="collapse navbar-collapse" style="background-color:#f7f2f2">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/view">View</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li class="active">
+                        <a href="view">View</a>
+                    </li>
 
                 </ul>
-
             </div>
         </div>
     </nav>
 
+    <div class="searchcontainer ">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class=" col-lg-11 col-md-11 col-sm-11">
+                    <input type="text" class="form-control" id="search" placeholder="Search...">
+                </div>
+                <div class="col=lg-1 col-md-1 col-sm-1"><button class="ui-button ui-widget ui-corner-all ui-button-icon-only col-sm-offset-12 col-sm-1" title="Button with icon only">
+            <span class="ui-icon ui-icon-search" id="searchme" ></span> Button with icon only
+            </button></div>
 
-    <h1>View</h1>
-    <!-- <button class="btn btn-lg upload-btn" id="get" type="button">GET</button> -->
-    <input type="text" id="search" style="position-top:30px">
-    <button class="Search" id="searchme" type="button">Search</button>
+            </div>
+
+        </form>
 
 
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <div id="img"> </div>
+    <div id="img2"> </div>
 
-    <!-- <button id="btn2">Display</button> -->
-    <!-- <button id="btn3">Get</button> -->
-
-    <div id='img'> </div>
-    <div id='img2'> </div>
-
-
+    <script>
+        $("search")
+            .change(function() {
+                var str = "";
+                $("select option:selected").each(function() {
+                    str += $(this).text() + " ";
+                });
+                $("div").text(str);
+            })
+            .change();
+    </script>
     <script src="js\view.js"></script>
 
 

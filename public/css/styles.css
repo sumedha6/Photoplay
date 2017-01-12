@@ -1,122 +1,129 @@
-.btn:focus, .upload-btn:focus{
-  outline: 0 !important;
+.btn:focus,
+.upload-btn:focus {
+    outline: 0 !important;
 }
 
 html,
 body {
-  height: 100%;
-  background-color: #f7f2f2;
+    height: 100%;
+    background-color: #f7f2f2;
 }
 
 body {
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
 }
 
 .row {
-  margin-top: 80px;
+    margin-top: 80px;
 }
 
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
-background-color: #b7339b;
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #b7339b;
 }
-p{
-  font-family:cursive;
-  font-size:25px;
+.container{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+p {
+    font-family: cursive;
+    font-size: 25px;
 }
 
 .upload-btn {
-  color: #ffffff;
-  background-color: #b7339b;
-  border: none;
+    color: #ffffff;
+    background-color: #b7339b;
+    border: none;
 }
+
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-top: 50px;
+    /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
     background: url(../images/ow1AXem.jpg) no-repeat center center;
     background-size: cover;
 }
+
 .intro-message {
     position: relative;
     padding-top: 10%;
     padding-bottom: 20%;
 }
+
 .intro-message > h1 {
     margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
     font-size: 5em;
 }
 
 .intro-divider {
     width: 400px;
     border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
 @media(max-width:767px) {
     .intro-message {
         padding-bottom: 15%;
     }
-
     .intro-message > h1 {
         font-size: 3em;
     }
-.upload-btn:hover,
-.upload-btn:focus,
-.upload-btn:active,
-.upload-btn.active {
-  color: #ffffff;
-  background-color: #FA8900;
-  border: none;
-}
-
-h4 {
-  padding-bottom: 30px;
-  color: #B8BDC1;
-}
-
-.glyphicon {
-  font-size: 5em;
-  color: #9CA3A9;
-}
-
-h2 {
-  margin-top: 15px;
-  color: #68757E;
-}
-
-.panel {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-#upload-input {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .main-container {
-    width: 100%;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 450px;
-  }
-}
-
-#page{
-  height:100px;
-  width:100px;
-}
-
-img{
-  display:none;
+    .upload-btn:hover,
+    .upload-btn:focus,
+    .upload-btn:active,
+    .upload-btn.active {
+        color: #ffffff;
+        background-color: #FA8900;
+        border: none;
+    }
+    h4 {
+        padding-bottom: 30px;
+        color: #B8BDC1;
+    }
+    .glyphicon {
+        font-size: 5em;
+        color: #9CA3A9;
+    }
+    h2 {
+        margin-top: 15px;
+        color: #68757E;
+    }
+    .panel {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #upload-input {
+        display: none;
+    }
+    @media (min-width: 768px) {
+        .main-container {
+            width: 100%;
+        }
+    }
+    @media (min-width: 992px) {
+        .container {
+            width: 450px;
+        }
+    }
+    #page {
+        height: 100px;
+        width: 100px;
+    }
+    img {
+        display: none;
+    }
+    .searchcontainer {
+        display: inline-block;
+        padding: 270px 240px 240px;
+    }
 }
