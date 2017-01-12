@@ -112,7 +112,7 @@ $('#searchme').click(function() {
           console.log(count);
 
           // for (var a = 0; a < count; a++) {
-              $('body').append('<div class="col-md-12 col-lg-12" id="page" ><img "/> </div>');
+              $('body').append('<div class="col-md-12 col-lg-12" id="page" >  <img "/> <span></div>');
               var $div = $("#page");
               console.log("MMMMsrcMMM::", src);
               var class2=" img-responsive";
@@ -121,7 +121,9 @@ $('#searchme').click(function() {
 
               // $("<img />").attr("class",class2).appendTo($div);
               $("<img />").attr("src", src).appendTo($div);
-              $("img").css({"height":"150px"});
+              $("img").css({"height":"250px"});
+              $("img").css({"padding-top":"50px"});
+
               // $('img').css({"color":"green"});
 
 
