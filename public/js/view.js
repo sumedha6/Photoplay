@@ -118,7 +118,12 @@ $('#searchme').click(function() {
                 $("img").css({ "padding-top": "50px" });
 
                 src = '';
-
+                $( "#search" ).change(function() {
+                  $('img').fadeOut('slow');
+                  });
+                  // $("#searchme").click(function(){
+                  //   $('#search').slideUp('slow');
+                  // })
 
 
             }
