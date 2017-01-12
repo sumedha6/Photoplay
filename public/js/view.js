@@ -105,30 +105,23 @@ $('#searchme').click(function() {
                     src = "images/" + filename;
                     console.log("LLLLsrcLLL::", src);
                 }
-                // $("<img />").attr("src", src).appendTo($div);
 
-                //           }
-                // }
                 console.log(count);
 
-                // for (var a = 0; a < count; a++) {
-                $('body').append('<div class="container" style="background-color:#ffffff;height:auto"><div class="col-md-12 col-lg-12" id="page" > <img "/> </div></div>');
+                $('body').append('<div class="container" style="background-color:#ffffff;height:auto;padding-top:50px"><div class="col-md-12 col-lg-12" id="page" > <img "/> </div></div>');
                 var $div = $("#page");
                 console.log("MMMMsrcMMM::", src);
                 var class2 = " img-responsive";
-                // var height="height:100px";
-                // $("<img />").attr("style",height).appendTo($div);
 
-                // $("<img />").attr("class",class2).appendTo($div);
                 $("<img />").attr("src", src).appendTo($div);
                 $("img").css({ "height": "350px" });
+                $("img").css({ "padding-top": "50px" });
+
                 src = '';
-                // $('img').css({"color":"green"});
 
 
 
             }
-            // filename(e);
 
         }
     })
